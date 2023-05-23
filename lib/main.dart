@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ubermorgen/station_three.dart';
+import 'package:ubermorgen/station_two.dart';
+import 'station_one.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +15,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ubermorgen',
+      initialRoute: '/',
+/*       routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        '/': (context) => const IntroPage(),
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        '/one': (context) => const StationOne(),
+        '/two': (context) => const StationTwo(),
+        '/three': (context) => const StationThree(),
+      },
+ */
+      home: const MyHomePage(title: 'Dein Ort im Übermorgen'),
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -24,7 +38,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'Dein Ort im Übermorgen'),
+      //home: const MyHomePage(title: 'Dein Ort im Übermorgen'),
     );
   }
 }
@@ -134,7 +148,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                Navigator.pop(context);
+                //Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const StationOne()));
               },
             ),
             ListTile(
@@ -143,7 +161,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const StationTwo()));
               },
             ),
             ListTile(
@@ -152,16 +173,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Ende'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const StationThree()));
               },
             ),
           ],
