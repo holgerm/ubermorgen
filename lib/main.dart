@@ -15,16 +15,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ubermorgen',
-      initialRoute: '/',
-/*       routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) => const IntroPage(),
-        // When navigating to the "/second" route, build the SecondScreen widget.
-        '/one': (context) => const StationOne(),
-        '/two': (context) => const StationTwo(),
-        '/three': (context) => const StationThree(),
-      },
- */
       home: const MyHomePage(title: 'Dein Ort im Übermorgen'),
       theme: ThemeData(
         // This is the theme of your application.
