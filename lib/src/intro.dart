@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'state_model.dart';
-import 'station_one.dart';
-import 'station_three.dart';
-import 'station_two.dart';
+import 'ubermorgen.dart';
 
 class Intro extends StatelessWidget {
   const Intro({super.key});
@@ -13,7 +10,7 @@ class Intro extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dein Ort im Übermorgen'),
+        title: const Text(S.introTitle),
       ),
       body: Center(
           child: Row(
@@ -21,15 +18,15 @@ class Intro extends StatelessWidget {
         children: <Widget>[
           const SizedBox(width: 100),
           Consumer<StateModel>(builder: (context, value, child) {
-            bool? done = value.points['station1']!['done'];
+            bool? done = value.points[S.keyStation1]![S.keyDone];
             return Text("Thema 1: $done", textAlign: TextAlign.center);
           }),
           Consumer<StateModel>(builder: (context, value, child) {
-            bool? done = value.points['station2']!['done'];
+            bool? done = value.points[S.keyStation2]![S.keyDone];
             return Text("Thema 2: $done", textAlign: TextAlign.center);
           }),
           Consumer<StateModel>(builder: (context, value, child) {
-            bool? done = value.points['station3']!['done'];
+            bool? done = value.points[S.keyStation3]![S.keyDone];
             return Text("Thema 3: $done", textAlign: TextAlign.center);
           }),
           const SizedBox(width: 100),
@@ -53,10 +50,8 @@ class Intro extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 //Navigator.pop(context);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const StationOne()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const StationOne()));
               },
             ),
             ListTile(
@@ -65,10 +60,8 @@ class Intro extends StatelessWidget {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const StationTwo()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const StationTwo()));
               },
             ),
             ListTile(
@@ -77,10 +70,8 @@ class Intro extends StatelessWidget {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const StationThree()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const StationThree()));
               },
             ),
           ],

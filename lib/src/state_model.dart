@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
+import 'ubermorgen.dart';
+
 class StateModel extends ChangeNotifier {
   var points = {
-    'station1': {
-      'done': false,
+    S.keyStation1: {
+      S.keyDone: false,
     },
-    'station2': {
-      'done': false,
+    S.keyStation2: {
+      S.keyDone: false,
     },
-    'station3': {
-      'done': false,
+    S.keyStation3: {
+      S.keyDone: false,
     },
   };
 
@@ -17,8 +19,8 @@ class StateModel extends ChangeNotifier {
     if (points[station] == null) {
       return;
     }
-    if (points[station]!['done'] == false) {
-      points[station]!['done'] = true;
+    if (points[station]![S.keyDone] == false) {
+      points[station]![S.keyDone] = true;
       notifyListeners();
     }
   }
