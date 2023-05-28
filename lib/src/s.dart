@@ -16,7 +16,7 @@ class S {
   static const station2Task =
       'Vergleich von Fahrzeit und CO2-Ausstoß: Fahrrad – ÖPNV – Auto';
 
-  static const station3Title = 'Station zu Soziales: Fairer Handel';
+  static const station3Title = 'Station zu Sozialem: Fairer Handel';
   static const station3Task =
       'Reihenfolge der fünf meistgekauften Fairtrade-Produkte in Deutschland in die richtige Reihenfolge anordnen: Kaffee, Kakao, Bananen (Südfrüchte), Textilien, Blumen';
 }
