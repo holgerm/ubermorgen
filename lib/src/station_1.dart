@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'ubermorgen.dart' show StateModel, S;
+import 'ubermorgen.dart' show S;
 
 class StationOne extends StatelessWidget {
   const StationOne({super.key});
@@ -31,6 +30,7 @@ class Station1Task1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+        padding: const EdgeInsets.all(25.0), child: const Placeholder());
   }
 }

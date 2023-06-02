@@ -10,7 +10,7 @@ class S {
   static const introTitle = 'Dein Ort im Übermorgen';
   static const station1Title = 'Station zu Ökonomie: Upcycling';
   static const station1Task =
-      'Deine Aufgabe: Verwende die alte Plane und bastele einen Geldbeutel oder eine Handyhülle daraus.';
+      'Deine Aufgabe: Verwende eine alte Plane und bastele einen Geldbeutel oder eine Handyhülle daraus.';
 
   static const station2Title = 'Station zu Ökologie: Mobilität';
   static const station2Task =
@@ -19,4 +19,8 @@ class S {
   static const station3Title = 'Station zu Sozialem: Fairer Handel';
   static const station3Task =
       'Reihenfolge der fünf meistgekauften Fairtrade-Produkte in Deutschland in die richtige Reihenfolge anordnen: Kaffee, Kakao, Bananen (Südfrüchte), Textilien, Blumen';
+  static const station3Task1Description =
+      'Hier geht es darum, die 5 meistgekauften fair gehandelten Produkte in die richtige Reihenfolge zu bringen. \n\nBitte benutze das Memory-Holz-Spiel (TODO), das am Stand ausliegt.';
+  static const station3Task2Description =
+      'Bei welchen Produkten kannst du noch darauf achten, sie fair gehandelt zu kaufen (privat oder in der Arbeit). Gib sie hier unten ein ...';
 }
