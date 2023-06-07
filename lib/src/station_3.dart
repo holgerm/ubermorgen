@@ -13,46 +13,51 @@ class _StationThreeState extends State<StationThree> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text(S.station3Title),
-        ),
-        body: Center(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(25.0),
-                  child: IndexedStack(
-                    index: index,
-                    children: const <Widget>[Station3Task1(), Station3Task2()],
+    return SafeArea(
+      child: Scaffold(
+          appBar: AppBar(
+            title: const Text(S.station3Title),
+          ),
+          body: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(25.0),
+                    child: IndexedStack(
+                      index: index,
+                      children: const <Widget>[
+                        Station3Task1(),
+                        Station3Task2()
+                      ],
+                    ),
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                        onPressed: index == 0
-                            ? null
-                            : () {
-                                setState(() {
-                                  index = 0;
-                                });
-                              },
-                        child: const Text('Zurück')),
-                    ElevatedButton(
-                        onPressed: index == 1
-                            ? null
-                            : () {
-                                setState(() {
-                                  index = 1;
-                                });
-                              },
-                        child: const Text('Weiter')),
-                  ],
-                )
-              ]),
-        ));
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                          onPressed: index == 0
+                              ? null
+                              : () {
+                                  setState(() {
+                                    index = 0;
+                                  });
+                                },
+                          child: const Text('Zurück')),
+                      ElevatedButton(
+                          onPressed: index == 1
+                              ? null
+                              : () {
+                                  setState(() {
+                                    index = 1;
+                                  });
+                                },
+                          child: const Text('Weiter')),
+                    ],
+                  )
+                ]),
+          )),
+    );
   }
 }
 

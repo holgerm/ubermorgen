@@ -8,38 +8,40 @@ class Intro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(S.introTitle),
-      ),
-      body: Align(
-        alignment: Alignment.center,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Consumer<StateModel>(
-              builder: (context, value, child) {
-                bool done = value.points[S.keyStation1]![S.keyDone]!;
-                return StationField(
-                    done, "Ökonomie - Upcycling", "oekonomie.png");
-              },
-            ),
-            Consumer<StateModel>(
-              builder: (context, value, child) {
-                bool done = value.points[S.keyStation2]![S.keyDone]!;
-                return StationField(
-                    done, "Ökologie - Mobilität", "oekologie.png");
-              },
-            ),
-            Consumer<StateModel>(
-              builder: (context, value, child) {
-                bool done = value.points[S.keyStation3]![S.keyDone]!;
-                return StationField(
-                    done, "Soziales - Fairer Handel", "soziales.png");
-              },
-            ),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(S.introTitle),
+        ),
+        body: Align(
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Consumer<StateModel>(
+                builder: (context, value, child) {
+                  bool done = value.points[S.keyStation1]![S.keyDone]!;
+                  return StationField(
+                      done, "Ökonomie - Upcycling", "oekonomie.png");
+                },
+              ),
+              Consumer<StateModel>(
+                builder: (context, value, child) {
+                  bool done = value.points[S.keyStation2]![S.keyDone]!;
+                  return StationField(
+                      done, "Ökologie - Mobilität", "oekologie.png");
+                },
+              ),
+              Consumer<StateModel>(
+                builder: (context, value, child) {
+                  bool done = value.points[S.keyStation3]![S.keyDone]!;
+                  return StationField(
+                      done, "Soziales - Fairer Handel", "soziales.png");
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

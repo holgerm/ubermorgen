@@ -7,21 +7,23 @@ class StationTwo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(S.station2Title),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(S.station2Title),
+        ),
+        body: Center(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(25.0),
+              child: const Text(S.station2Task),
+            ),
+            const Station2Task1(),
+          ],
+        )),
       ),
-      body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(25.0),
-            child: const Text(S.station2Task),
-          ),
-          const Station2Task1(),
-        ],
-      )),
     );
   }
 }

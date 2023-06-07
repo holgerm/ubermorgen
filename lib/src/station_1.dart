@@ -47,115 +47,119 @@ class _StationOneState extends State<StationOne> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(S.station1Title),
-      ),
-      body: Container(
-        padding: const EdgeInsets.all(25.0),
-        alignment: Alignment.center,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Flexible(
-              flex: L.heightOfTaskDescription,
-              child: Container(
-                padding: const EdgeInsets.all(25.0),
-                child: const Text(S.station1Task,
-                    style: TextStyle(fontSize: L.fontSize)),
-              ),
-            ),
-            Flexible(
-              flex: L.heightOfContent,
-              child: IntrinsicWidth(
-                child: Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: [
-                    FutureBuilder(
-                      future: _initializeVideoPlayerFuture,
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState == ConnectionState.done) {
-                          // If the VideoPlayerController has finished initialization, use
-                          // the data it provides to limit the aspect ratio of the video.
-                          return AspectRatio(
-                            aspectRatio: _controller.value.aspectRatio,
-                            // Use the VideoPlayer widget to display the video.
-                            child: VideoPlayer(_controller),
-                          );
-                        } else {
-                          // If the VideoPlayerController is still initializing, show a
-                          // loading spinner.
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                      },
-                    ),
-                    Center(
-                      child: IconButton(
-                        icon: _controller.value.isPlaying
-                            ? const Icon(Icons.pause)
-                            : const Icon(Icons.play_arrow),
-                        tooltip:
-                            _controller.value.isPlaying ? S.pause : S.start,
-                        iconSize: 80,
-                        color: const Color.fromARGB(140, 10, 10, 10),
-                        onPressed: () {
-                          setState(() {
-                            // If the video is playing, pause it.
-                            if (_controller.value.isPlaying) {
-                              _controller.pause();
-                            } else {
-                              // If the video is paused, play it.
-                              _controller.play();
-                            }
-                          });
-                        },
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 5,
-                      width: MediaQuery.of(context).size.width * 0.7,
-                      child: VideoProgressIndicator(
-                        _controller,
-                        allowScrubbing: true,
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        colors: const VideoProgressColors(
-                            backgroundColor: Color.fromARGB(100, 234, 239, 242),
-                            bufferedColor: Color.fromARGB(100, 170, 189, 199),
-                            playedColor: Color.fromARGB(150, 13, 34, 69)),
-                      ),
-                    ),
-                  ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(S.station1Title),
+        ),
+        body: Container(
+          padding: const EdgeInsets.all(25.0),
+          alignment: Alignment.center,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Flexible(
+                flex: L.heightOfTaskDescription,
+                child: Container(
+                  padding: const EdgeInsets.all(25.0),
+                  child: const Text(S.station1Task,
+                      style: TextStyle(fontSize: L.fontSize)),
                 ),
               ),
-            ),
-            Flexible(
-                flex: L.heightOfFooter,
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: Consumer<StateModel>(
-                    builder: (BuildContext context, model, Widget? child) {
-                      return TextButton.icon(
-                        icon: const Icon(Icons.check),
-                        label: const Text(S.done),
-                        style: TextButton.styleFrom(
-                          textStyle: const TextStyle(fontSize: 20),
+              Flexible(
+                flex: L.heightOfContent,
+                child: IntrinsicWidth(
+                  child: Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      FutureBuilder(
+                        future: _initializeVideoPlayerFuture,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.done) {
+                            // If the VideoPlayerController has finished initialization, use
+                            // the data it provides to limit the aspect ratio of the video.
+                            return AspectRatio(
+                              aspectRatio: _controller.value.aspectRatio,
+                              // Use the VideoPlayer widget to display the video.
+                              child: VideoPlayer(_controller),
+                            );
+                          } else {
+                            // If the VideoPlayerController is still initializing, show a
+                            // loading spinner.
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        },
+                      ),
+                      Center(
+                        child: IconButton(
+                          icon: _controller.value.isPlaying
+                              ? const Icon(Icons.pause)
+                              : const Icon(Icons.play_arrow),
+                          tooltip:
+                              _controller.value.isPlaying ? S.pause : S.start,
+                          iconSize: 80,
+                          color: const Color.fromARGB(140, 10, 10, 10),
+                          onPressed: () {
+                            setState(() {
+                              // If the video is playing, pause it.
+                              if (_controller.value.isPlaying) {
+                                _controller.pause();
+                              } else {
+                                // If the video is paused, play it.
+                                _controller.play();
+                              }
+                            });
+                          },
                         ),
-                        onPressed: model.points[S.keyStation1]![S.keyDone]!
-                            ? null
-                            : () {
-                                setState(() {
-                                  if (canBeMarkedDone) {
-                                    model.markAsDone(S.keyStation1);
-                                  }
-                                });
-                              },
-                      );
-                    },
+                      ),
+                      Positioned(
+                        bottom: 5,
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        child: VideoProgressIndicator(
+                          _controller,
+                          allowScrubbing: true,
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          colors: const VideoProgressColors(
+                              backgroundColor:
+                                  Color.fromARGB(100, 234, 239, 242),
+                              bufferedColor: Color.fromARGB(100, 170, 189, 199),
+                              playedColor: Color.fromARGB(150, 13, 34, 69)),
+                        ),
+                      ),
+                    ],
                   ),
-                ))
-          ],
+                ),
+              ),
+              Flexible(
+                  flex: L.heightOfFooter,
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: Consumer<StateModel>(
+                      builder: (BuildContext context, model, Widget? child) {
+                        return TextButton.icon(
+                          icon: const Icon(Icons.check),
+                          label: const Text(S.done),
+                          style: TextButton.styleFrom(
+                            textStyle: const TextStyle(fontSize: 20),
+                          ),
+                          onPressed: model.points[S.keyStation1]![S.keyDone]!
+                              ? null
+                              : () {
+                                  setState(() {
+                                    if (canBeMarkedDone) {
+                                      model.markAsDone(S.keyStation1);
+                                    }
+                                  });
+                                },
+                        );
+                      },
+                    ),
+                  ))
+            ],
+          ),
         ),
       ),
     );
