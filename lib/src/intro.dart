@@ -12,26 +12,36 @@ class Intro extends StatelessWidget {
       appBar: AppBar(
         title: const Text(S.introTitle),
       ),
-      body: Center(
-          child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          const SizedBox(width: 100),
-          Consumer<StateModel>(builder: (context, value, child) {
-            bool? done = value.points[S.keyStation1]![S.keyDone];
-            return Text("Thema 1: $done", textAlign: TextAlign.center);
-          }),
-          Consumer<StateModel>(builder: (context, value, child) {
-            bool? done = value.points[S.keyStation2]![S.keyDone];
-            return Text("Thema 2: $done", textAlign: TextAlign.center);
-          }),
-          Consumer<StateModel>(builder: (context, value, child) {
-            bool? done = value.points[S.keyStation3]![S.keyDone];
-            return Text("Thema 3: $done", textAlign: TextAlign.center);
-          }),
-          const SizedBox(width: 100),
-        ],
-      )),
+      body: Align(
+        alignment: Alignment.center,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Consumer<StateModel>(
+              builder: (context, value, child) {
+                bool done = value.points[S.keyStation1]![S.keyDone]!;
+                return StationField(
+                    done, "Ökonomie - Upcycling", "oekonomie.png");
+              },
+            ),
+            Consumer<StateModel>(
+              builder: (context, value, child) {
+                bool done = value.points[S.keyStation2]![S.keyDone]!;
+                return StationField(
+                    done, "Ökologie - Mobilität", "oekologie.png");
+              },
+            ),
+            Consumer<StateModel>(
+              builder: (context, value, child) {
+                bool done = value.points[S.keyStation3]![S.keyDone]!;
+                return StationField(
+                    done, "Soziales - Fairer Handel", "soziales.png");
+              },
+            ),
+          ],
+        ),
+      ),
       drawer: Drawer(
         child: ListView(
           // Important: Remove any padding from the ListView.
@@ -77,6 +87,44 @@ class Intro extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class StationField extends StatelessWidget {
+  final bool done;
+  final String title;
+  final String iconname;
+
+  const StationField(this.done, this.title, this.iconname, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(title),
+        const SizedBox(height: 8),
+        ImageIcon(AssetImage('icons/$iconname'), size: 75),
+        const SizedBox(height: 8),
+        OutlinedButton(
+          onPressed: () {
+            if (title == "Ökonomie - Upcycling") {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const StationOne()));
+            }
+            if (title == "Ökologie - Mobilität") {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const StationTwo()));
+            }
+            if (title == "Soziales - Fairer Handel") {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const StationThree()));
+            }
+          },
+          child: done ? const Text("Ansehen") : const Text("Starten"),
+        )
+      ],
     );
   }
 }

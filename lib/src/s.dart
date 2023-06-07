@@ -1,16 +1,21 @@
 class S {
-  // TECHNISCHE DETAILS:
-  static const appTitle = 'ubermorgen';
+  // Keys and IDs:
   static const keyStation1 = 'station1';
   static const keyStation2 = 'station2';
   static const keyStation3 = 'station3';
   static const keyDone = 'done';
 
+  // TECHNISCHE DETAILS:
+  static const appTitle = 'ubermorgen';
+  static const start = 'Start';
+  static const pause = 'Pause';
+  static const done = 'Erledigt';
+
   // SPEZIELLE INHALTE
   static const introTitle = 'Dein Ort im Übermorgen';
   static const station1Title = 'Station zu Ökonomie: Upcycling';
   static const station1Task =
-      'Deine Aufgabe: Verwende eine alte Plane und bastele einen Geldbeutel oder eine Handyhülle daraus.';
+      'Deine Aufgabe: Verwende eine alte Plane und bastele einen Geldbeutel oder eine Handyhülle daraus.\n\nSchau dir die Anleitung im Video an:';
 
   static const station2Title = 'Station zu Ökologie: Mobilität';
   static const station2Task =
