@@ -42,51 +42,6 @@ class Intro extends StatelessWidget {
           ],
         ),
       ),
-      drawer: Drawer(
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('Übersicht'),
-            ),
-            ListTile(
-              title: const Text('Station 1'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                //Navigator.pop(context);
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const StationOne()));
-              },
-            ),
-            ListTile(
-              title: const Text('Station 2'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const StationTwo()));
-              },
-            ),
-            ListTile(
-              title: const Text('Station 3'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const StationThree()));
-              },
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
