@@ -22,22 +22,19 @@ class Intro extends StatelessWidget {
               Consumer<StateModel>(
                 builder: (context, value, child) {
                   bool done = value.points[S.keyStation1]![S.keyDone]!;
-                  return StationField(
-                      done, "Ökonomie - Upcycling", "oekonomie.png");
+                  return StationField(done, S.titleStation1, S.imageStation1);
                 },
               ),
               Consumer<StateModel>(
                 builder: (context, value, child) {
                   bool done = value.points[S.keyStation2]![S.keyDone]!;
-                  return StationField(
-                      done, "Ökologie - Mobilität", "oekologie.png");
+                  return StationField(done, S.titleStation2, S.imageStation2);
                 },
               ),
               Consumer<StateModel>(
                 builder: (context, value, child) {
                   bool done = value.points[S.keyStation3]![S.keyDone]!;
-                  return StationField(
-                      done, "Soziales - Fairer Handel", "soziales.png");
+                  return StationField(done, S.titleStation3, S.imageStation3);
                 },
               ),
             ],
@@ -57,31 +54,38 @@ class StationField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(title),
-        const SizedBox(height: 8),
-        ImageIcon(AssetImage('icons/$iconname'), size: 75),
-        const SizedBox(height: 8),
-        OutlinedButton(
-          onPressed: () {
-            if (title == "Ökonomie - Upcycling") {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const StationOne()));
-            }
-            if (title == "Ökologie - Mobilität") {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const StationTwo()));
-            }
-            if (title == "Soziales - Fairer Handel") {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const StationThree()));
-            }
-          },
-          child: done ? const Text("Ansehen") : const Text("Starten"),
-        )
-      ],
+    return Container(
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+          color: done ? Colors.green[100] : Colors.green[200],
+          borderRadius: const BorderRadius.all(Radius.circular(20))),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(title),
+          const SizedBox(height: 8),
+          ImageIcon(AssetImage('icons/$iconname'), size: 75),
+          const SizedBox(height: 8),
+          OutlinedButton(
+            onPressed: () {
+              switch (title) {
+                case S.titleStation1:
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const StationOne()));
+                  break;
+                case S.titleStation2:
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const StationTwo()));
+                  break;
+                case S.titleStation3:
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const StationThree()));
+              }
+            },
+            child: done ? const Text("Ansehen") : const Text("Starten"),
+          )
+        ],
+      ),
     );
   }
 }

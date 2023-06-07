@@ -1,8 +1,14 @@
 class S {
   // Keys and IDs:
   static const keyStation1 = 'station1';
+  static const titleStation1 = 'Ökonomie - Upcycling';
+  static const imageStation1 = 'oekonomie.png';
   static const keyStation2 = 'station2';
+  static const titleStation2 = 'Ökologie - Erneuerbare Energie';
+  static const imageStation2 = 'oekologie.png';
   static const keyStation3 = 'station3';
+  static const titleStation3 = 'Soziales - Fairer Handel';
+  static const imageStation3 = 'soziales.png';
   static const keyDone = 'done';
 
   // TECHNISCHE DETAILS:
