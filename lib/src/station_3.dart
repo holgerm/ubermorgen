@@ -87,7 +87,7 @@ class _Station3Task1State extends State<Station3Task1> {
             child: Column(
               children: [
                 const Text(
-                  S.station3Task1Description,
+                  S.station3Task1,
                 ),
                 CheckboxListTile(
                   value: checkboxValue,
@@ -124,7 +124,7 @@ class _Station3Task2State extends State<Station3Task2> {
         child: Column(
           children: [
             const Text(
-              S.station3Task2Description,
+              S.station3Task2,
             ),
             CheckboxListTile(
               value: checkboxValue,

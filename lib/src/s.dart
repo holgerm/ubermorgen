@@ -25,13 +25,13 @@ class S {
 
   static const station2Title = 'Station zu Ökologie: Mobilität';
   static const station2Task =
-      'Vergleich von Fahrzeit und CO2-Ausstoß: Fahrrad – ÖPNV – Auto';
+      'Bitte bastele Windräder, um sauberen Strom zu erzeugen.\n\nDu hast 2 Minuten Zeit. Wieviele Windräder schaffst du?\n\nLass dir vorher kurz zeigen, wie du sie bauen kannst.';
 
   static const station3Title = 'Station zu Sozialem: Fairer Handel';
   static const station3Task =
       'Reihenfolge der fünf meistgekauften Fairtrade-Produkte in Deutschland in die richtige Reihenfolge anordnen: Kaffee, Kakao, Bananen (Südfrüchte), Textilien, Blumen';
-  static const station3Task1Description =
+  static const station3Task1 =
       'Hier geht es darum, die 5 meistgekauften fair gehandelten Produkte in die richtige Reihenfolge zu bringen. \n\nBitte benutze das Memory-Holz-Spiel (TODO), das am Stand ausliegt.';
-  static const station3Task2Description =
+  static const station3Task2 =
       'Bei welchen Produkten kannst du noch darauf achten, sie fair gehandelt zu kaufen (privat oder in der Arbeit). Gib sie hier unten ein ...';
 }

@@ -63,6 +63,7 @@ class _StationOneState extends State<StationOne> {
                 child: Container(
                   padding: const EdgeInsets.all(25.0),
                   child: const Text(S.station1Task,
+                      textAlign: TextAlign.center,
                       style: TextStyle(fontSize: L.fontSize)),
                 ),
               ),
