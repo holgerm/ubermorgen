@@ -1,11 +1,18 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-
 import 'ubermorgen.dart' show S;
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/services.dart';
 
-class StationTwo extends StatelessWidget {
+class StationTwo extends StatefulWidget {
   const StationTwo({super.key});
+
+  @override
+  State<StationTwo> createState() => _StationTwoState();
+}
+
+class _StationTwoState extends State<StationTwo> {
+  bool canBeMarkedDone = true;
 
   @override
   Widget build(BuildContext context) {
@@ -84,9 +91,19 @@ class CountDown extends StatefulWidget {
 }
 
 class _CountDownState extends State<CountDown> {
-  int timeLeft = 120;
+  int timeLeft = 10;
   bool started = false;
   late Timer currentTimer;
+  late ByteData timerData;
+  late Uint8List timerBytes;
+  late ByteData alarmData;
+  late Uint8List alarmBytes;
+  final AudioPlayer player = AudioPlayer();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,15 +127,25 @@ class _CountDownState extends State<CountDown> {
 
   void _startTimer() {
     started = true;
+    playTimer();
     Timer.periodic(const Duration(seconds: 1), (timer) {
       currentTimer = timer;
       setState(() {
         if (timeLeft > 0) {
           timeLeft--;
         } else {
+          playAlarm();
           timer.cancel();
         }
       });
     });
+  }
+
+  Future<void> playTimer() async {
+    await player.play(AssetSource("audio/timer.mp3"));
+  }
+
+  Future<void> playAlarm() async {
+    await player.play(AssetSource("audio/alarm.mp3"));
   }
 }

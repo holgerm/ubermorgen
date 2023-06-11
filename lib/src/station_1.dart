@@ -118,7 +118,8 @@ class _StationOneState extends State<StationOne> {
                       ),
                       Positioned(
                         bottom: 5,
-                        width: MediaQuery.of(context).size.width * 0.7,
+                        // height: 5,
+                        width: MediaQuery.of(context).size.width * 0.6,
                         child: VideoProgressIndicator(
                           _controller,
                           allowScrubbing: true,

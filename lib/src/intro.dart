@@ -57,7 +57,7 @@ class StationField extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-          color: done ? Color.fromARGB(255, 224, 255, 227) : Colors.green[100],
+          color: done ? const Color.fromARGB(255, 224, 255, 227) : Colors.green[100],
           borderRadius: const BorderRadius.all(Radius.circular(20))),
       child: Column(
         mainAxisSize: MainAxisSize.min,
