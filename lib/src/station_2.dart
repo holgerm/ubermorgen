@@ -48,50 +48,17 @@ class Station2Task1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => Station2Model(),
-      child: Container(
-        padding: const EdgeInsets.all(25.0),
-        child: const Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CountDown(),
-            ResultArea(),
-            Footer(),
-          ],
-        ),
+    return Container(
+      padding: const EdgeInsets.all(25.0),
+      child: const Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          CountDown(),
+          ResultArea(),
+          Footer(),
+        ],
       ),
     );
-  }
-}
-
-class Station2Model extends ChangeNotifier {
-  bool taskCompleted = false;
-  bool canBeMarkedDone = false;
-  int numberOfWindmills = 0;
-
-  void setTaskCompleted() {
-    taskCompleted = true;
-    notifyListeners();
-  }
-
-  void setCanBeMarkedAsDone() {
-    canBeMarkedDone = true;
-    notifyListeners();
-  }
-
-  void setNumberOfWindmills(int newNumber) {
-    numberOfWindmills = newNumber;
-  }
-
-  String getNumberOfWindmillsText() {
-    if (numberOfWindmills == 0) {
-      return "Ich habe noch keine Windräder gebaut.";
-    } else if (numberOfWindmills == 1)
-      return "Ich habe ein Windrad gebaut.";
-    else {
-      return "Ich habe $numberOfWindmills Windräder gebaut";
-    }
   }
 }
 
@@ -107,12 +74,12 @@ class _ResultAreaState extends State<ResultArea> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<Station2Model>(
+    return Consumer<StateModel>(
       builder: (context, model, child) {
-        bool taskCompleted = model.taskCompleted;
+        bool taskCompleted = model.station2TaskCompleted;
         return Row(
           children: [
-            Text(model.getNumberOfWindmillsText()),
+            Text(model.station2GetNumberOfWindmillsText()),
             const SizedBox(
               width: 8.0,
             ),
@@ -125,8 +92,8 @@ class _ResultAreaState extends State<ResultArea> {
                   ? (double value) {
                       setState(() {
                         _curSliderValue = value;
-                        model.setNumberOfWindmills(value as int);
-                        model.setCanBeMarkedAsDone();
+                        model.station2SetWindmillDone(value as int);
+                        model.station2SetCanBeMarkedAsDone(true);
                       });
                     }
                   : null,
@@ -205,7 +172,8 @@ class _CountDownState extends State<CountDown> {
 
           playAlarm();
           timer.cancel();
-          Provider.of<Station2Model>(context, listen: false).setTaskCompleted();
+          Provider.of<StateModel>(context, listen: false)
+              .station2SetTaskCompleted();
         }
       });
     });
@@ -232,7 +200,7 @@ class _FooterState extends State<Footer> {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.bottomRight,
-      child: Consumer<Station2Model>(
+      child: Consumer<StateModel>(
         builder: (BuildContext context, model, Widget? child) {
           return TextButton.icon(
             icon: const Icon(Icons.check),
@@ -240,14 +208,14 @@ class _FooterState extends State<Footer> {
             style: TextButton.styleFrom(
               textStyle: const TextStyle(fontSize: 20),
             ),
-            onPressed: model.canBeMarkedDone
+            onPressed: model.station2CanBeMarkedDone
                 ? () {
                     setState(() {
-                      if (model.canBeMarkedDone) {
+                      if (model.station2CanBeMarkedDone) {
                         Provider.of<StateModel>(context, listen: false)
                             .markAsDone(S.keyStation1);
-                        model.canBeMarkedDone =
-                            false; // is marked done so it cann not be marked again.
+                        model.station2SetCanBeMarkedAsDone(
+                            false); // is marked done so it cann not be marked again.
                       }
                     });
                   }
