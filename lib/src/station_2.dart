@@ -68,6 +68,7 @@ class Station2Task1 extends StatelessWidget {
 class Station2Model extends ChangeNotifier {
   bool taskCompleted = false;
   bool canBeMarkedDone = false;
+  int numberOfWindmills = 0;
 
   void setTaskCompleted() {
     taskCompleted = true;
@@ -77,6 +78,20 @@ class Station2Model extends ChangeNotifier {
   void setCanBeMarkedAsDone() {
     canBeMarkedDone = true;
     notifyListeners();
+  }
+
+  void setNumberOfWindmills(int newNumber) {
+    numberOfWindmills = newNumber;
+  }
+
+  String getNumberOfWindmillsText() {
+    if (numberOfWindmills == 0) {
+      return "Ich habe noch keine Windräder gebaut.";
+    } else if (numberOfWindmills == 1)
+      return "Ich habe ein Windrad gebaut.";
+    else {
+      return "Ich habe $numberOfWindmills Windräder gebaut";
+    }
   }
 }
 
@@ -95,19 +110,28 @@ class _ResultAreaState extends State<ResultArea> {
     return Consumer<Station2Model>(
       builder: (context, model, child) {
         bool taskCompleted = model.taskCompleted;
-        return Slider(
-          value: _curSliderValue,
-          max: 20,
-          divisions: 20,
-          label: _curSliderValue.round().toString(),
-          onChanged: taskCompleted // && !model.canBeMarkedDone
-              ? (double value) {
-                  setState(() {
-                    _curSliderValue = value;
-                    model.setCanBeMarkedAsDone();
-                  });
-                }
-              : null,
+        return Row(
+          children: [
+            Text(model.getNumberOfWindmillsText()),
+            const SizedBox(
+              width: 8.0,
+            ),
+            Slider(
+              value: _curSliderValue,
+              max: 20,
+              divisions: 20,
+              label: _curSliderValue.round().toString(),
+              onChanged: taskCompleted // && !model.canBeMarkedDone
+                  ? (double value) {
+                      setState(() {
+                        _curSliderValue = value;
+                        model.setNumberOfWindmills(value as int);
+                        model.setCanBeMarkedAsDone();
+                      });
+                    }
+                  : null,
+            ),
+          ],
         );
       },
     );
