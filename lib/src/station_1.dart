@@ -147,15 +147,16 @@ class _StationOneState extends State<StationOne> {
                           style: TextButton.styleFrom(
                             textStyle: const TextStyle(fontSize: 20),
                           ),
-                          onPressed: model.points[S.keyStation1]![S.keyDone]!
-                              ? null
-                              : () {
+                          onPressed: model.station1TaskCompleted &&
+                                  !model.station1Checked
+                              ? () {
                                   setState(() {
                                     if (canBeMarkedDone) {
-                                      model.markAsDone(S.keyStation1);
+                                      model.station1SetChecked(true);
                                     }
                                   });
-                                },
+                                }
+                              : null,
                         );
                       },
                     ),
@@ -172,6 +173,8 @@ class _StationOneState extends State<StationOne> {
     if (_controller.value.position == _controller.value.duration) {
       setState(() {
         _controller.pause();
+        Provider.of<StateModel>(context, listen: false)
+            .station1SetTaskCompleted();
       });
     }
   }

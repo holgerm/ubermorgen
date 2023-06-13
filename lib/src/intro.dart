@@ -20,20 +20,20 @@ class Intro extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Consumer<StateModel>(
-                builder: (context, value, child) {
-                  bool done = value.points[S.keyStation1]![S.keyDone]!;
+                builder: (context, model, child) {
+                  bool done = model.station1TaskCompleted;
                   return StationField(done, S.titleStation1, S.imageStation1);
                 },
               ),
               Consumer<StateModel>(
-                builder: (context, value, child) {
-                  bool done = value.points[S.keyStation2]![S.keyDone]!;
+                builder: (context, model, child) {
+                  bool done = model.station2TaskCompleted;
                   return StationField(done, S.titleStation2, S.imageStation2);
                 },
               ),
               Consumer<StateModel>(
-                builder: (context, value, child) {
-                  bool done = value.points[S.keyStation3]![S.keyDone]!;
+                builder: (context, model, child) {
+                  bool done = model.station3TaskCompleted;
                   return StationField(done, S.titleStation3, S.imageStation3);
                 },
               ),
@@ -57,7 +57,9 @@ class StationField extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-          color: done ? const Color.fromARGB(255, 224, 255, 227) : Colors.green[100],
+          color: done
+              ? const Color.fromARGB(255, 224, 255, 227)
+              : Colors.green[100],
           borderRadius: const BorderRadius.all(Radius.circular(20))),
       child: Column(
         mainAxisSize: MainAxisSize.min,

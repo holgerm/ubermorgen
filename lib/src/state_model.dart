@@ -1,46 +1,39 @@
 import 'package:flutter/material.dart';
-
 import 'ubermorgen.dart';
 
+// STATION 1:
 class StateModel extends ChangeNotifier {
-  var points = {
-    S.keyStation1: {
-      S.keyDone: false,
-    },
-    S.keyStation2: {
-      S.keyDone: false,
-    },
-    S.keyStation3: {
-      S.keyDone: false,
-    },
-  };
+  bool station1TaskCompleted = false;
+  bool station1Checked = false;
+
+  void station1SetTaskCompleted() {
+    station1TaskCompleted = true;
+    notifyListeners();
+  }
+
+  void station1SetChecked(bool value) {
+    station1Checked = value;
+    notifyListeners();
+  }
+
+  // STATION 2:
+
   bool station2TaskCompleted = false;
-  bool station2CanBeMarkedDone = false;
-
+  bool station2Checked = false;
   int numberOfWindmills = 0;
-
-  void markAsDone(String station) {
-    if (points[station] == null) {
-      return;
-    }
-    if (points[station]![S.keyDone] == false) {
-      points[station]![S.keyDone] = true;
-      notifyListeners();
-    }
-  }
-
-  void station2SetWindmillDone(int newNumber) {
-    numberOfWindmills = newNumber;
-    notifyListeners();
-  }
-
-  void station2SetCanBeMarkedAsDone(bool value) {
-    station2CanBeMarkedDone = value;
-    notifyListeners();
-  }
 
   void station2SetTaskCompleted() {
     station2TaskCompleted = true;
+    notifyListeners();
+  }
+
+  void station2SetChecked(bool value) {
+    station2Checked = value;
+    notifyListeners();
+  }
+
+  void station2SetNumberOfWindmillsBuilt(int newNumber) {
+    numberOfWindmills = newNumber;
     notifyListeners();
   }
 
@@ -52,5 +45,20 @@ class StateModel extends ChangeNotifier {
     } else {
       return "Ich habe $numberOfWindmills Windräder gebaut";
     }
+  }
+
+  // STATION 3:
+
+  bool station3TaskCompleted = false;
+  bool station3CanBeMarkedDone = false;
+
+  void station3SetTaskCompleted() {
+    station3TaskCompleted = true;
+    notifyListeners();
+  }
+
+  void station3SetCanBeMarkedAsDone(bool value) {
+    station3CanBeMarkedDone = value;
+    notifyListeners();
   }
 }

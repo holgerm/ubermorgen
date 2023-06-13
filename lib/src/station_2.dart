@@ -76,7 +76,7 @@ class _ResultAreaState extends State<ResultArea> {
   Widget build(BuildContext context) {
     return Consumer<StateModel>(
       builder: (context, model, child) {
-        bool taskCompleted = model.station2TaskCompleted;
+        _curSliderValue = model.numberOfWindmills as double;
         return Row(
           children: [
             Text(model.station2GetNumberOfWindmillsText()),
@@ -88,12 +88,12 @@ class _ResultAreaState extends State<ResultArea> {
               max: 20,
               divisions: 20,
               label: _curSliderValue.round().toString(),
-              onChanged: taskCompleted // && !model.canBeMarkedDone
+              onChanged: model.station2TaskCompleted && !model.station2Checked
                   ? (double value) {
                       setState(() {
                         _curSliderValue = value;
-                        model.station2SetWindmillDone(value as int);
-                        model.station2SetCanBeMarkedAsDone(true);
+                        model.station2SetNumberOfWindmillsBuilt(value as int);
+                        model.station2SetTaskCompleted();
                       });
                     }
                   : null,
@@ -133,9 +133,13 @@ class _CountDownState extends State<CountDown> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(timeLeft.toString()),
-        FilledButton(
-          onPressed: started ? null : _startTimer,
-          child: const Text('Start'),
+        Consumer<StateModel>(
+          builder: (BuildContext context, model, Widget? child) {
+            return FilledButton(
+              onPressed: started || model.station2Checked ? null : _startTimer,
+              child: const Text(S.start),
+            );
+          },
         ),
       ],
     );
@@ -208,15 +212,11 @@ class _FooterState extends State<Footer> {
             style: TextButton.styleFrom(
               textStyle: const TextStyle(fontSize: 20),
             ),
-            onPressed: model.station2CanBeMarkedDone
+            onPressed: model.station2TaskCompleted && !model.station2Checked
                 ? () {
                     setState(() {
-                      if (model.station2CanBeMarkedDone) {
-                        Provider.of<StateModel>(context, listen: false)
-                            .markAsDone(S.keyStation1);
-                        model.station2SetCanBeMarkedAsDone(
-                            false); // is marked done so it cann not be marked again.
-                      }
+                      model.station2SetChecked(
+                          true); // is marked done so it cann not be marked again.
                     });
                   }
                 : null,
