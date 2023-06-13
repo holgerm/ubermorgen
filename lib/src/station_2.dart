@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'ubermorgen.dart' show S;
+import 'package:provider/provider.dart';
+import 'package:ubermorgen/src/state_model.dart';
+import 'ubermorgen.dart' show L, S;
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/services.dart';
 
@@ -30,6 +32,7 @@ class _StationTwoState extends State<StationTwo> {
               child: const Text(
                 S.station2Task,
                 textAlign: TextAlign.center,
+                style: TextStyle(fontSize: L.fontSize),
               ),
             ),
             const Station2Task1(),
@@ -45,15 +48,35 @@ class Station2Task1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(25.0),
-      child: const Column(
-        children: [
-          CountDown(),
-          ResultArea(),
-        ],
+    return ChangeNotifierProvider(
+      create: (context) => Station2Model(),
+      child: Container(
+        padding: const EdgeInsets.all(25.0),
+        child: const Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CountDown(),
+            ResultArea(),
+            Footer(),
+          ],
+        ),
       ),
     );
+  }
+}
+
+class Station2Model extends ChangeNotifier {
+  bool taskCompleted = false;
+  bool canBeMarkedDone = false;
+
+  void setTaskCompleted() {
+    taskCompleted = true;
+    notifyListeners();
+  }
+
+  void setCanBeMarkedAsDone() {
+    canBeMarkedDone = true;
+    notifyListeners();
   }
 }
 
@@ -69,15 +92,23 @@ class _ResultAreaState extends State<ResultArea> {
 
   @override
   Widget build(BuildContext context) {
-    return Slider(
-      value: _curSliderValue,
-      max: 20,
-      divisions: 20,
-      label: _curSliderValue.round().toString(),
-      onChanged: (double value) {
-        setState(() {
-          _curSliderValue = value;
-        });
+    return Consumer<Station2Model>(
+      builder: (context, model, child) {
+        bool taskCompleted = model.taskCompleted;
+        return Slider(
+          value: _curSliderValue,
+          max: 20,
+          divisions: 20,
+          label: _curSliderValue.round().toString(),
+          onChanged: taskCompleted // && !model.canBeMarkedDone
+              ? (double value) {
+                  setState(() {
+                    _curSliderValue = value;
+                    model.setCanBeMarkedAsDone();
+                  });
+                }
+              : null,
+        );
       },
     );
   }
@@ -134,8 +165,23 @@ class _CountDownState extends State<CountDown> {
         if (timeLeft > 0) {
           timeLeft--;
         } else {
+          showDialog<String>(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              title: const Text(S.station2TimeOutTitle),
+              content: const Text(S.station2TimeOutSubTitle),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'OK'),
+                  child: const Text('OK'),
+                ),
+              ],
+            ),
+          );
+
           playAlarm();
           timer.cancel();
+          Provider.of<Station2Model>(context, listen: false).setTaskCompleted();
         }
       });
     });
@@ -147,5 +193,44 @@ class _CountDownState extends State<CountDown> {
 
   Future<void> playAlarm() async {
     await player.play(AssetSource("audio/alarm.mp3"));
+  }
+}
+
+class Footer extends StatefulWidget {
+  const Footer({super.key});
+
+  @override
+  State<Footer> createState() => _FooterState();
+}
+
+class _FooterState extends State<Footer> {
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomRight,
+      child: Consumer<Station2Model>(
+        builder: (BuildContext context, model, Widget? child) {
+          return TextButton.icon(
+            icon: const Icon(Icons.check),
+            label: const Text(S.done),
+            style: TextButton.styleFrom(
+              textStyle: const TextStyle(fontSize: 20),
+            ),
+            onPressed: model.canBeMarkedDone
+                ? () {
+                    setState(() {
+                      if (model.canBeMarkedDone) {
+                        Provider.of<StateModel>(context, listen: false)
+                            .markAsDone(S.keyStation1);
+                        model.canBeMarkedDone =
+                            false; // is marked done so it cann not be marked again.
+                      }
+                    });
+                  }
+                : null,
+          );
+        },
+      ),
+    );
   }
 }

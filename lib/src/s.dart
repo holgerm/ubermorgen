@@ -25,7 +25,13 @@ class S {
 
   static const station2Title = 'Station zu Ökologie: Mobilität';
   static const station2Task =
-      'Bitte bastele Windräder, um sauberen Strom zu erzeugen.\n\nDu hast 2 Minuten Zeit. Wieviele Windräder schaffst du?\n\nLass dir vorher kurz zeigen, wie du sie bauen kannst.';
+      'Deine Aufgabe: Bitte bastele Windräder, um sauberen Strom zu erzeugen.\n\nDu hast 2 Minuten Zeit. Wieviele Windräder schaffst du?\n\nLass dir vorher kurz zeigen, wie du sie bauen kannst und starte dann den Timer.';
+  static const station2TimeOutTitle =
+      'Fertig! Wieviele Windräder hast du geschafft?';
+  static const station2TimeOutSubTitle =
+      'Stelle die Zahl bitte auf dem Schieberegler ein.';
+  static const station2AfterDoneDescription =
+      'Stelle die Zahl bitte auf dem Schieberegler ein und klcike danach auf "Erledigt"';
 
   static const station3Title = 'Station zu Sozialem: Fairer Handel';
   static const station3Task =

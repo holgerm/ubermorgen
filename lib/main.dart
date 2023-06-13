@@ -18,6 +18,9 @@ class MyApp extends StatelessWidget {
       home: const Intro(),
       theme: ThemeData(
         primarySwatch: Colors.green,
+        sliderTheme: const SliderThemeData(
+          showValueIndicator: ShowValueIndicator.always,
+        ),
       ),
     );
   }
