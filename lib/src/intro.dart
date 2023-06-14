@@ -21,19 +21,19 @@ class Intro extends StatelessWidget {
             children: <Widget>[
               Consumer<StateModel>(
                 builder: (context, model, child) {
-                  bool done = model.station1TaskCompleted;
+                  bool done = model.station1Checked;
                   return StationField(done, S.titleStation1, S.imageStation1);
                 },
               ),
               Consumer<StateModel>(
                 builder: (context, model, child) {
-                  bool done = model.station2TaskCompleted;
+                  bool done = model.station2Checked;
                   return StationField(done, S.titleStation2, S.imageStation2);
                 },
               ),
               Consumer<StateModel>(
                 builder: (context, model, child) {
-                  bool done = model.station3TaskCompleted;
+                  bool done = model.station3Checked;
                   return StationField(done, S.titleStation3, S.imageStation3);
                 },
               ),

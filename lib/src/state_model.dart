@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'ubermorgen.dart';
 
 // STATION 1:
 class StateModel extends ChangeNotifier {
@@ -51,6 +50,26 @@ class StateModel extends ChangeNotifier {
 
   bool station3TaskCompleted = false;
   bool station3CanBeMarkedDone = false;
+  bool station3Checked = false;
+
+  final List<List> items = [
+    ['Kaffee', const Color.fromARGB(255, 98, 50, 9)],
+    ['Kakao', const Color.fromARGB(255, 160, 125, 93)],
+    ['Blumen', const Color.fromARGB(255, 195, 65, 166)],
+    ['Textilien', const Color.fromARGB(255, 170, 184, 201)],
+    ['Bananen (Südfrüchte)', const Color.fromARGB(255, 240, 233, 39)]
+  ];
+
+  removeItemAt(int oldIndex) {
+    var result = items.removeAt(oldIndex);
+    notifyListeners();
+    return result;
+  }
+
+  void insert(int newIndex, var item) {
+    items.insert(newIndex, item);
+    notifyListeners();
+  }
 
   void station3SetTaskCompleted() {
     station3TaskCompleted = true;
@@ -59,6 +78,11 @@ class StateModel extends ChangeNotifier {
 
   void station3SetCanBeMarkedAsDone(bool value) {
     station3CanBeMarkedDone = value;
+    notifyListeners();
+  }
+
+  void station3SetChecked(bool value) {
+    station3Checked = value;
     notifyListeners();
   }
 }

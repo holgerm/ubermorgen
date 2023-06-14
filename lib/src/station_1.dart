@@ -15,8 +15,8 @@ class _StationOneState extends State<StationOne> {
   late VideoPlayerController _controller;
   late Future<void> _initializeVideoPlayerFuture;
 
-  bool canBeMarkedDone =
-      true; // TODO Video has been watched or some time has gone ...
+  // bool canBeMarkedDone =
+  //     true; // TODO Video has been watched or some time has gone ...
 
   @override
   void initState() {
@@ -151,9 +151,7 @@ class _StationOneState extends State<StationOne> {
                                   !model.station1Checked
                               ? () {
                                   setState(() {
-                                    if (canBeMarkedDone) {
-                                      model.station1SetChecked(true);
-                                    }
+                                    model.station1SetChecked(true);
                                   });
                                 }
                               : null,

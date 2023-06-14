@@ -35,9 +35,5 @@ class S {
 
   static const station3Title = 'Station zu Sozialem: Fairer Handel';
   static const station3Task =
-      'Reihenfolge der fünf meistgekauften Fairtrade-Produkte in Deutschland in die richtige Reihenfolge anordnen: Kaffee, Kakao, Bananen (Südfrüchte), Textilien, Blumen';
-  static const station3Task1 =
-      'Hier geht es darum, die 5 meistgekauften fair gehandelten Produkte in die richtige Reihenfolge zu bringen. \n\nBitte benutze das Memory-Holz-Spiel (TODO), das am Stand ausliegt.';
-  static const station3Task2 =
-      'Bei welchen Produkten kannst du noch darauf achten, sie fair gehandelt zu kaufen (privat oder in der Arbeit). Gib sie hier unten ein ...';
+      'Deine Aufgabe: Hier geht es darum, die 5 meistgekauften fair gehandelten Produkte in die richtige Reihenfolge zu bringen. \nVerschiebe einfach die unten angezeigten Produkte in die richtige Reihenfolge (oben das meistverkaufte):';
 }
