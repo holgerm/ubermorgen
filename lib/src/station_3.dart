@@ -81,6 +81,9 @@ class ProductListView extends StatelessWidget {
             for (List it in model.items)
               ListTile(
                 key: Key(it[0]),
+                leading: Container(
+                    margin: const EdgeInsets.all(5),
+                    child: ImageIcon(AssetImage('icons/${it[2]}'), size: 55)),
                 title: Text(
                   it[0],
                   style: const TextStyle(fontWeight: FontWeight.bold),
@@ -89,6 +92,7 @@ class ProductListView extends StatelessWidget {
                 textColor: it[1].computeLuminance() > 0.5
                     ? Colors.black
                     : Colors.white,
+                trailing: _getCorrectIcon(it, model),
               ),
           ],
           onReorder: (int oldIndex, int newIndex) {
@@ -101,5 +105,15 @@ class ProductListView extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+_getCorrectIcon(List it, StateModel model) {
+  if (!model.station3Checked) return null;
+
+  if (model.items.indexOf(it) == it[3]) {
+    return const Icon(Icons.check);
+  } else {
+    return const Icon(Icons.error);
   }
 }

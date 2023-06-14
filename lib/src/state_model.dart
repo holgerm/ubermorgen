@@ -53,11 +53,37 @@ class StateModel extends ChangeNotifier {
   bool station3Checked = false;
 
   final List<List> items = [
-    ['Kaffee', const Color.fromARGB(255, 98, 50, 9)],
-    ['Kakao', const Color.fromARGB(255, 160, 125, 93)],
-    ['Blumen', const Color.fromARGB(255, 195, 65, 166)],
-    ['Textilien', const Color.fromARGB(255, 170, 184, 201)],
-    ['Bananen (Südfrüchte)', const Color.fromARGB(255, 240, 233, 39)]
+    // Title, Color, Icon path, Correct rank
+    [
+      'Bananen (Südfrüchte)',
+      const Color.fromARGB(255, 240, 233, 39),
+      'banana.png',
+      2,
+    ],
+    [
+      'Blumen',
+      const Color.fromARGB(255, 195, 65, 166),
+      'flowers.png',
+      4,
+    ],
+    [
+      'Kaffee',
+      const Color.fromARGB(255, 123, 74, 31),
+      'coffee.png',
+      0,
+    ],
+    [
+      'Kakao',
+      const Color.fromARGB(255, 160, 125, 93),
+      'cocoa.png',
+      1,
+    ],
+    [
+      'Textilien',
+      const Color.fromARGB(255, 170, 184, 201),
+      'textiles.png',
+      3,
+    ],
   ];
 
   removeItemAt(int oldIndex) {
