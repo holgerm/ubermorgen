@@ -43,19 +43,24 @@ class _StationThreeState extends State<StationThree> {
                 alignment: Alignment.bottomRight,
                 child: Consumer<StateModel>(
                   builder: (BuildContext context, model, Widget? child) {
-                    return TextButton.icon(
-                      icon: const Icon(Icons.check),
-                      label: const Text(S.done),
-                      style: TextButton.styleFrom(
-                        textStyle: const TextStyle(fontSize: 20),
-                      ),
-                      onPressed: !model.station3Checked
-                          ? () {
-                              setState(() {
-                                model.station3SetChecked(true);
-                              });
-                            }
-                          : null,
+                    return Row(
+                      children: [
+                        Text(_getFeedbackText(model)),
+                        TextButton.icon(
+                          icon: const Icon(Icons.check),
+                          label: const Text(S.done),
+                          style: TextButton.styleFrom(
+                            textStyle: const TextStyle(fontSize: 20),
+                          ),
+                          onPressed: !model.station3Checked
+                              ? () {
+                                  setState(() {
+                                    model.station3SetChecked(true);
+                                  });
+                                }
+                              : null,
+                        ),
+                      ],
                     );
                   },
                 ),
@@ -65,6 +70,16 @@ class _StationThreeState extends State<StationThree> {
         ),
       ),
     );
+  }
+
+  _getFeedbackText(model) {
+    if (!model.station3Checked) return '';
+
+    if (model.numberOfErrors > 0) {
+      return 'Du hast ${model.numberOfErrors} Produkte falsch angeordnet.\nDu kannst sie aber weiterhin verschieben, um die richtige Lösung zu sehen.';
+    } else {
+      return 'Perfekte Lösung! Genauso stimmt alles.';
+    }
   }
 }
 
@@ -77,22 +92,27 @@ class ProductListView extends StatelessWidget {
       builder: (BuildContext context, model, Widget? child) {
         return ReorderableListView(
           padding: const EdgeInsets.symmetric(horizontal: 40),
+          buildDefaultDragHandles: false,
           children: <Widget>[
             for (List it in model.items)
-              ListTile(
+              ReorderableDragStartListener(
                 key: Key(it[0]),
-                leading: Container(
-                    margin: const EdgeInsets.all(5),
-                    child: ImageIcon(AssetImage('icons/${it[2]}'), size: 55)),
-                title: Text(
-                  it[0],
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                index: model.items.indexOf(it),
+                child: ListTile(
+                  //key: Key(it[0]),
+                  leading: Container(
+                      margin: const EdgeInsets.all(5),
+                      child: ImageIcon(AssetImage('icons/${it[2]}'), size: 55)),
+                  title: Text(
+                    it[0],
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  tileColor: it[1] as Color,
+                  textColor: it[1].computeLuminance() > 0.5
+                      ? Colors.black
+                      : Colors.white,
+                  trailing: _getCorrectIcon(it, model),
                 ),
-                tileColor: it[1] as Color,
-                textColor: it[1].computeLuminance() > 0.5
-                    ? Colors.black
-                    : Colors.white,
-                trailing: _getCorrectIcon(it, model),
               ),
           ],
           onReorder: (int oldIndex, int newIndex) {
@@ -112,8 +132,8 @@ _getCorrectIcon(List it, StateModel model) {
   if (!model.station3Checked) return null;
 
   if (model.items.indexOf(it) == it[3]) {
-    return const Icon(Icons.check);
+    return const Icon(Icons.check, color: Colors.greenAccent);
   } else {
-    return const Icon(Icons.error);
+    return const Icon(Icons.warning_outlined, color: Colors.redAccent);
   }
 }

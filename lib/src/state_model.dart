@@ -86,6 +86,8 @@ class StateModel extends ChangeNotifier {
     ],
   ];
 
+  int numberOfErrors = 5;
+
   removeItemAt(int oldIndex) {
     var result = items.removeAt(oldIndex);
     notifyListeners();
@@ -109,6 +111,12 @@ class StateModel extends ChangeNotifier {
 
   void station3SetChecked(bool value) {
     station3Checked = value;
+    numberOfErrors = 0;
+    for (var it in items) {
+      if (items.indexOf(it) != it[3]) {
+        numberOfErrors = numberOfErrors + 1;
+      }
+    }
     notifyListeners();
   }
 }
