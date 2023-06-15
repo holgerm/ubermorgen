@@ -102,7 +102,8 @@ class ProductListView extends StatelessWidget {
                   //key: Key(it[0]),
                   leading: Container(
                       margin: const EdgeInsets.all(5),
-                      child: ImageIcon(AssetImage('icons/${it[2]}'), size: 55)),
+                      child:
+                          ImageIcon(AssetImage('images/${it[2]}'), size: 55)),
                   title: Text(
                     it[0],
                     style: const TextStyle(fontWeight: FontWeight.bold),

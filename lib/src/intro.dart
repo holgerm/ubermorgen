@@ -66,7 +66,7 @@ class StationField extends StatelessWidget {
         children: [
           Text(title),
           const SizedBox(height: 8),
-          ImageIcon(AssetImage('icons/$iconname'), size: 75),
+          ImageIcon(AssetImage('images/$iconname'), size: 75),
           const SizedBox(height: 8),
           OutlinedButton(
             onPressed: () {
