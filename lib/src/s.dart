@@ -21,7 +21,16 @@ class S {
   static const introTitle = 'Dein Ort im Übermorgen';
   static const station1Title = 'Station zu Ökonomie: Upcycling';
   static const station1Task =
-      'Deine Aufgabe: Verwende eine alte Plane und bastele einen Geldbeutel oder eine Handyhülle daraus.\n\nSchau dir die Anleitung im Video an:';
+      'Deine Aufgabe: Wähle für die folgenden 3 Fragen je eine Option aus und schaue dann wie sich deine Entscheidung auswirkt:';
+  static const station1Selection1Description = 'Wähle Option 1 aus:';
+  static const station1Selection1OptionA = '1_A';
+  static const station1Selection1OptionB = '1_B';
+  static const station1Selection2Description = 'Wähle Option 2 aus:';
+  static const station1Selection2OptionA = '2_A';
+  static const station1Selection2OptionB = '2_B';
+  static const station1Selection3Description = 'Wähle Option 3 aus:';
+  static const station1Selection3OptionA = '3_A';
+  static const station1Selection3OptionB = '3_B';
 
   static const station2Title = 'Station zu Ökologie: Mobilität';
   static const station2Task =
