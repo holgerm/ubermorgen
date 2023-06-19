@@ -15,7 +15,8 @@ class S {
   static const appTitle = 'ubermorgen';
   static const start = 'Start';
   static const pause = 'Pause';
-  static const done = 'Erledigt';
+  static const todo = "Einchecken";
+  static const done = 'Fertig';
 
   // SPEZIELLE INHALTE
   static const introTitle = 'Dein Ort im Übermorgen';

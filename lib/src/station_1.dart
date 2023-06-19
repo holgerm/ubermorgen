@@ -10,36 +10,6 @@ class StationOne extends StatefulWidget {
 }
 
 class _StationOneState extends State<StationOne> {
-  List<bool> option1Selections = [false, false];
-  _setOption1Selection(int index) {
-    setState(
-      () {
-        option1Selections = [false, false];
-        option1Selections[index] = true;
-      },
-    );
-  }
-
-  List<bool> option2Selections = [false, false];
-  _setOption2Selection(int index) {
-    setState(
-      () {
-        option2Selections = [false, false];
-        option2Selections[index] = true;
-      },
-    );
-  }
-
-  List<bool> option3Selections = [false, false];
-  _setOption3Selection(int index) {
-    setState(
-      () {
-        option3Selections = [false, false];
-        option3Selections[index] = true;
-      },
-    );
-  }
-
   _makeToggleButtonsFor(
       String description,
       final String optionA,
@@ -47,7 +17,7 @@ class _StationOneState extends State<StationOne> {
       Function(int) setOptionMethod,
       List<bool> optionSelections) {
     return Flexible(
-      flex: (L.heightOfContent / 3.0).round(),
+      flex: (L.heightOfContent / 6.0).round(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -81,12 +51,6 @@ class _StationOneState extends State<StationOne> {
     );
   }
 
-  bool _canCheckInTask() {
-    return option1Selections.contains(true) &&
-        option2Selections.contains(true) &&
-        option3Selections.contains(true);
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -97,60 +61,126 @@ class _StationOneState extends State<StationOne> {
         body: Container(
           padding: const EdgeInsets.all(25.0),
           alignment: Alignment.center,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Flexible(
-                flex: L.heightOfTaskDescription,
-                child: Container(
-                  padding: const EdgeInsets.all(25.0),
-                  child: const Text(S.station1Task,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: L.fontSize)),
-                ),
-              ),
-              _makeToggleButtonsFor(
-                  S.station1Selection1Description,
-                  S.station1Selection1OptionA,
-                  S.station1Selection1OptionB,
-                  _setOption1Selection,
-                  option1Selections),
-              _makeToggleButtonsFor(
-                  S.station1Selection2Description,
-                  S.station1Selection2OptionA,
-                  S.station1Selection2OptionB,
-                  _setOption2Selection,
-                  option2Selections),
-              _makeToggleButtonsFor(
-                  S.station1Selection3Description,
-                  S.station1Selection3OptionA,
-                  S.station1Selection3OptionB,
-                  _setOption3Selection,
-                  option3Selections),
-              Flexible(
-                  flex: L.heightOfFooter,
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: Consumer<StateModel>(
-                      builder: (BuildContext context, model, Widget? child) {
-                        return TextButton.icon(
-                          icon: const Icon(Icons.check),
-                          label: const Text(S.done),
-                          style: TextButton.styleFrom(
-                            textStyle: const TextStyle(fontSize: 20),
-                          ),
-                          onPressed: _canCheckInTask() && !model.station1Checked
-                              ? () {
-                                  setState(() {
-                                    model.station1SetChecked(true);
-                                  });
-                                }
-                              : null,
-                        );
-                      },
+          child: Consumer<StateModel>(
+            builder: (BuildContext context, model, Widget? child) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Flexible(
+                    flex: L.heightOfTaskDescription,
+                    child: Container(
+                      padding: const EdgeInsets.all(25.0),
+                      child: const Text(S.station1Task,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: L.fontSize)),
                     ),
-                  ))
-            ],
+                  ),
+                  Flexible(
+                    flex: L.heightOfContent,
+                    child: Row(
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _makeToggleButtonsFor(
+                                S.station1Selection1Description,
+                                S.station1Selection1OptionA,
+                                S.station1Selection1OptionB,
+                                model.setOption1Selection,
+                                model.option1Selections),
+                            _makeToggleButtonsFor(
+                                S.station1Selection2Description,
+                                S.station1Selection2OptionA,
+                                S.station1Selection2OptionB,
+                                model.setOption2Selection,
+                                model.option2Selections),
+                            _makeToggleButtonsFor(
+                                S.station1Selection3Description,
+                                S.station1Selection3OptionA,
+                                S.station1Selection3OptionB,
+                                model.setOption3Selection,
+                                model.option3Selections),
+                          ],
+                        ),
+                        Stack(
+                          children: <Widget>[
+                            SizedBox(
+                              width: 500,
+                              height: 350,
+                              child:
+                                  Image.asset('assets/images/s1_original.png'),
+                            ),
+                            Consumer<StateModel>(
+                              builder:
+                                  (BuildContext context, model, Widget? child) {
+                                return SizedBox(
+                                  width: 500,
+                                  height: 350,
+                                  child: Image.asset(model.option1Selections[0]
+                                      ? 'assets/images/s1_a1.png'
+                                      : 'assets/images/s1_a2.png'),
+                                );
+                              },
+                            ),
+                            Consumer<StateModel>(
+                              builder:
+                                  (BuildContext context, model, Widget? child) {
+                                return SizedBox(
+                                  width: 500,
+                                  height: 350,
+                                  child: Image.asset(model.option2Selections[0]
+                                      ? 'assets/images/s1_b1.png'
+                                      : 'assets/images/s1_b2.png'),
+                                );
+                              },
+                            ),
+                            Consumer<StateModel>(
+                              builder:
+                                  (BuildContext context, model, Widget? child) {
+                                return SizedBox(
+                                  width: 500,
+                                  height: 350,
+                                  child: Image.asset(model.option3Selections[0]
+                                      ? 'assets/images/s1_c1.png'
+                                      : 'assets/images/s1_c2.png'),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Flexible(
+                    flex: L.heightOfFooter,
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: Consumer<StateModel>(
+                        builder: (BuildContext context, model, Widget? child) {
+                          return TextButton.icon(
+                            icon: const Icon(Icons.check),
+                            label:
+                                Text(model.station1Checked ? S.done : S.todo),
+                            style: TextButton.styleFrom(
+                              textStyle: const TextStyle(fontSize: 20),
+                            ),
+                            onPressed:
+                                model.canCheckInTask() && !model.station1Checked
+                                    ? () {
+                                        setState(() {
+                                          model.station1SetChecked(true,
+                                              model.makeImageNameFromOptions());
+                                        });
+                                      }
+                                    : null,
+                          );
+                        },
+                      ),
+                    ),
+                  )
+                ],
+              );
+            },
           ),
         ),
       ),

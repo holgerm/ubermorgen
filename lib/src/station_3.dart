@@ -48,7 +48,7 @@ class _StationThreeState extends State<StationThree> {
                         Text(_getFeedbackText(model)),
                         TextButton.icon(
                           icon: const Icon(Icons.check),
-                          label: const Text(S.done),
+                          label: Text(model.station3Checked ? S.done : S.todo),
                           style: TextButton.styleFrom(
                             textStyle: const TextStyle(fontSize: 20),
                           ),

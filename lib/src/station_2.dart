@@ -208,7 +208,7 @@ class _FooterState extends State<Footer> {
         builder: (BuildContext context, model, Widget? child) {
           return TextButton.icon(
             icon: const Icon(Icons.check),
-            label: const Text(S.done),
+            label: Text(model.station2Checked ? S.done : S.todo),
             style: TextButton.styleFrom(
               textStyle: const TextStyle(fontSize: 20),
             ),

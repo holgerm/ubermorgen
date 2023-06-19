@@ -4,14 +4,36 @@ import 'package:flutter/material.dart';
 class StateModel extends ChangeNotifier {
   bool station1TaskCompleted = false;
   bool station1Checked = false;
+  String station1ImageFileName = "original.png";
 
   void station1SetTaskCompleted() {
     station1TaskCompleted = true;
     notifyListeners();
   }
 
-  void station1SetChecked(bool value) {
+  void station1SetChecked(bool value, String imageFileName) {
     station1Checked = value;
+    notifyListeners();
+  }
+
+  List<bool> option1Selections = [false, false];
+  setOption1Selection(int index) {
+    option1Selections = [false, false];
+    option1Selections[index] = true;
+    notifyListeners();
+  }
+
+  List<bool> option2Selections = [false, false];
+  setOption2Selection(int index) {
+    option2Selections = [false, false];
+    option2Selections[index] = true;
+    notifyListeners();
+  }
+
+  List<bool> option3Selections = [false, false];
+  setOption3Selection(int index) {
+    option3Selections = [false, false];
+    option3Selections[index] = true;
     notifyListeners();
   }
 
@@ -29,6 +51,18 @@ class StateModel extends ChangeNotifier {
   void station2SetChecked(bool value) {
     station2Checked = value;
     notifyListeners();
+  }
+
+  bool canCheckInTask() {
+    return option1Selections.contains(true) &&
+        option2Selections.contains(true) &&
+        option3Selections.contains(true);
+  }
+
+  String makeImageNameFromOptions() {
+    return (option1Selections[0] ? "1A" : "1B") +
+        (option2Selections[0] ? "2A" : "2B") +
+        (option3Selections[0] ? "3A" : "3B");
   }
 
   void station2SetNumberOfWindmillsBuilt(int newNumber) {
