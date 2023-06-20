@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       title: S.appTitle,
       home: const Intro(),
       theme: ThemeData(
+        fontFamily: 'Roboto',
         primarySwatch: Colors.green,
         sliderTheme: const SliderThemeData(
           showValueIndicator: ShowValueIndicator.always,

@@ -99,7 +99,7 @@ class _ResultAreaState extends State<ResultArea> {
   Widget build(BuildContext context) {
     return Consumer<StateModel>(
       builder: (context, model, child) {
-        _curSliderValue = model.numberOfWindmills as double;
+        _curSliderValue = model.numberOfWindmills.toDouble();
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -180,7 +180,8 @@ class _CountDownState extends State<CountDown> {
   @override
   void dispose() {
     super.dispose();
-    currentTimer.cancel();
+    player.dispose();
+    currentTimer?.cancel();
   }
 
   void _startTimer() {
