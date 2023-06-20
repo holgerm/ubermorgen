@@ -42,9 +42,26 @@ class Intro extends StatelessWidget {
             ),
             IconButton(
               icon: const Icon(Icons.logout),
-              onPressed: () {
-                Provider.of<StateModel>(context, listen: false).reset();
-              },
+              onPressed: () => showDialog<String>(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  title: const Text('Spiel Zurücksetzen'),
+                  content: const Text('Wirklich alles Löschen?'),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, 'Abbrechen'),
+                      child: const Text('Abbrechen'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Provider.of<StateModel>(context, listen: false).reset();
+                        Navigator.pop(context, 'Abbrechen');
+                      },
+                      child: const Text('Ja, alles Löschen!'),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
