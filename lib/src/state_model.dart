@@ -6,6 +6,62 @@ class StateModel extends ChangeNotifier {
   bool station1Checked = false;
   String station1ImageFileName = "original.png";
 
+  void reset() {
+    // station 1:
+    station1TaskCompleted = false;
+    station1Checked = false;
+    station1ImageFileName = "original.png";
+    optionASelections = [false, false];
+    optionBSelections = [false, false];
+    optionCSelections = [false, false];
+
+    // station 2:
+    station2TaskCompleted = false;
+    station2Checked = false;
+    numberOfWindmills = 0;
+
+    // station 3:
+    station3TaskCompleted = false;
+    station3CanBeMarkedDone = false;
+    station3Checked = false;
+    numberOfErrors = 5;
+    items = [
+      // Title, Color, Icon path, Correct rank
+      [
+        'Bananen (Südfrüchte)',
+        const Color.fromARGB(255, 240, 233, 39),
+        'banana.png',
+        2,
+      ],
+      [
+        'Blumen',
+        const Color.fromARGB(255, 195, 65, 166),
+        'flowers.png',
+        4,
+      ],
+      [
+        'Kaffee',
+        const Color.fromARGB(255, 123, 74, 31),
+        'coffee.png',
+        0,
+      ],
+      [
+        'Kakao',
+        const Color.fromARGB(255, 160, 125, 93),
+        'cocoa.png',
+        1,
+      ],
+      [
+        'Textilien',
+        const Color.fromARGB(255, 170, 184, 201),
+        'textiles.png',
+        3,
+      ],
+    ];
+
+    notifyListeners();
+  }
+
   void station1SetTaskCompleted() {
     station1TaskCompleted = true;
     notifyListeners();
@@ -16,24 +72,24 @@ class StateModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<bool> option1Selections = [false, false];
+  List<bool> optionASelections = [false, false];
   setOption1Selection(int index) {
-    option1Selections = [false, false];
-    option1Selections[index] = true;
+    optionASelections = [false, false];
+    optionASelections[index] = true;
     notifyListeners();
   }
 
-  List<bool> option2Selections = [false, false];
+  List<bool> optionBSelections = [false, false];
   setOption2Selection(int index) {
-    option2Selections = [false, false];
-    option2Selections[index] = true;
+    optionBSelections = [false, false];
+    optionBSelections[index] = true;
     notifyListeners();
   }
 
-  List<bool> option3Selections = [false, false];
+  List<bool> optionCSelections = [false, false];
   setOption3Selection(int index) {
-    option3Selections = [false, false];
-    option3Selections[index] = true;
+    optionCSelections = [false, false];
+    optionCSelections[index] = true;
     notifyListeners();
   }
 
@@ -54,15 +110,15 @@ class StateModel extends ChangeNotifier {
   }
 
   bool canCheckInTask() {
-    return option1Selections.contains(true) &&
-        option2Selections.contains(true) &&
-        option3Selections.contains(true);
+    return optionASelections.contains(true) &&
+        optionBSelections.contains(true) &&
+        optionCSelections.contains(true);
   }
 
   String makeImageNameFromOptions() {
-    return (option1Selections[0] ? "1A" : "1B") +
-        (option2Selections[0] ? "2A" : "2B") +
-        (option3Selections[0] ? "3A" : "3B");
+    return (optionASelections[0] ? "1A" : "1B") +
+        (optionBSelections[0] ? "2A" : "2B") +
+        (optionCSelections[0] ? "3A" : "3B");
   }
 
   void station2SetNumberOfWindmillsBuilt(int newNumber) {
@@ -86,7 +142,7 @@ class StateModel extends ChangeNotifier {
   bool station3CanBeMarkedDone = false;
   bool station3Checked = false;
 
-  final List<List> items = [
+  List<List> items = [
     // Title, Color, Icon path, Correct rank
     [
       'Bananen (Südfrüchte)',

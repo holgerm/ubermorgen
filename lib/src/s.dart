@@ -17,6 +17,8 @@ class S {
   static const pause = 'Pause';
   static const todo = "Einchecken";
   static const done = 'Fertig';
+  static const imprint =
+      "Impressum:\n\nEine App von Q3 - Medien.Bildung.Abenteuer";
 
   // SPEZIELLE INHALTE
   static const introTitle = 'Dein Ort im Übermorgen';

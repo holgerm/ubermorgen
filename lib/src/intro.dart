@@ -12,6 +12,41 @@ class Intro extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(S.introTitle),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.info),
+              onPressed: () => showDialog<String>(
+                context: context,
+                builder: (BuildContext context) => Dialog.fullscreen(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const Text(
+                        S.imprint,
+                        style: TextStyle(fontSize: L.fontSize),
+                      ),
+                      const SizedBox(height: 15),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text(
+                          'Schliessen',
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            IconButton(
+              icon: const Icon(Icons.logout),
+              onPressed: () {
+                Provider.of<StateModel>(context, listen: false).reset();
+              },
+            ),
+          ],
         ),
         body: Align(
           alignment: Alignment.center,

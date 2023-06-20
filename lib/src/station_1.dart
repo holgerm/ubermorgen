@@ -91,19 +91,19 @@ class _StationOneState extends State<StationOne> {
                                 S.station1SelectionAOption1,
                                 S.station1SelectionAOption2,
                                 model.setOption1Selection,
-                                model.option1Selections),
+                                model.optionASelections),
                             _makeToggleButtonsFor(
                                 S.station1SelectionBDescription,
                                 S.station1SelectionBOption1,
                                 S.station1SelectionBOption2,
                                 model.setOption2Selection,
-                                model.option2Selections),
+                                model.optionBSelections),
                             _makeToggleButtonsFor(
                                 S.station1SelectionCDescription,
                                 S.station1SelectionCOption1,
                                 S.station1SelectionCOption2,
                                 model.setOption3Selection,
-                                model.option3Selections),
+                                model.optionCSelections),
                           ],
                         ),
                         Stack(
@@ -120,9 +120,7 @@ class _StationOneState extends State<StationOne> {
                                 return SizedBox(
                                   width: 500,
                                   height: 350,
-                                  child: Image.asset(model.option1Selections[0]
-                                      ? 'assets/images/s1_a1.png'
-                                      : 'assets/images/s1_a2.png'),
+                                  child: imageA(model),
                                 );
                               },
                             ),
@@ -132,9 +130,7 @@ class _StationOneState extends State<StationOne> {
                                 return SizedBox(
                                   width: 500,
                                   height: 350,
-                                  child: Image.asset(model.option2Selections[0]
-                                      ? 'assets/images/s1_b1.png'
-                                      : 'assets/images/s1_b2.png'),
+                                  child: imageB(model),
                                 );
                               },
                             ),
@@ -144,9 +140,7 @@ class _StationOneState extends State<StationOne> {
                                 return SizedBox(
                                   width: 500,
                                   height: 350,
-                                  child: Image.asset(model.option3Selections[0]
-                                      ? 'assets/images/s1_c1.png'
-                                      : 'assets/images/s1_c2.png'),
+                                  child: imageC(model),
                                 );
                               },
                             ),
@@ -189,5 +183,35 @@ class _StationOneState extends State<StationOne> {
         ),
       ),
     );
+  }
+
+  Image? imageA(StateModel model) {
+    if (model.optionASelections[0]) {
+      return Image.asset('assets/images/s1_a1.png');
+    } else if (model.optionASelections[1]) {
+      return Image.asset('assets/images/s1_a2.png');
+    } else {
+      return null;
+    }
+  }
+
+  Image? imageB(StateModel model) {
+    if (model.optionBSelections[0]) {
+      return Image.asset('assets/images/s1_b1.png');
+    } else if (model.optionBSelections[1]) {
+      return Image.asset('assets/images/s1_b2.png');
+    } else {
+      return null;
+    }
+  }
+
+  Image? imageC(StateModel model) {
+    if (model.optionCSelections[0]) {
+      return Image.asset('assets/images/s1_c1.png');
+    } else if (model.optionCSelections[1]) {
+      return Image.asset('assets/images/s1_c2.png');
+    } else {
+      return null;
+    }
   }
 }
