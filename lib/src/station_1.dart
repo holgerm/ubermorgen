@@ -64,40 +64,44 @@ class _StationOneState extends State<StationOne> {
           child: Consumer<StateModel>(
             builder: (BuildContext context, model, Widget? child) {
               return Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Flexible(
                     flex: L.heightOfTaskDescription,
                     child: Container(
                       padding: const EdgeInsets.all(25.0),
-                      child: const Text(S.station1Task,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: L.fontSize)),
+                      child: const Text(
+                        S.station1Task,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: L.fontSize),
+                      ),
                     ),
                   ),
                   Flexible(
                     flex: L.heightOfContent,
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _makeToggleButtonsFor(
-                                S.station1Selection1Description,
-                                S.station1Selection1OptionA,
-                                S.station1Selection1OptionB,
+                                S.station1SelectionADescription,
+                                S.station1SelectionAOption1,
+                                S.station1SelectionAOption2,
                                 model.setOption1Selection,
                                 model.option1Selections),
                             _makeToggleButtonsFor(
-                                S.station1Selection2Description,
-                                S.station1Selection2OptionA,
-                                S.station1Selection2OptionB,
+                                S.station1SelectionBDescription,
+                                S.station1SelectionBOption1,
+                                S.station1SelectionBOption2,
                                 model.setOption2Selection,
                                 model.option2Selections),
                             _makeToggleButtonsFor(
-                                S.station1Selection3Description,
-                                S.station1Selection3OptionA,
-                                S.station1Selection3OptionB,
+                                S.station1SelectionCDescription,
+                                S.station1SelectionCOption1,
+                                S.station1SelectionCOption2,
                                 model.setOption3Selection,
                                 model.option3Selections),
                           ],
@@ -154,7 +158,7 @@ class _StationOneState extends State<StationOne> {
                   Flexible(
                     flex: L.heightOfFooter,
                     child: Align(
-                      alignment: Alignment.bottomRight,
+                      alignment: Alignment.centerRight,
                       child: Consumer<StateModel>(
                         builder: (BuildContext context, model, Widget? child) {
                           return TextButton.icon(

@@ -1,7 +1,7 @@
 class S {
   // Keys and IDs:
   static const keyStation1 = 'station1';
-  static const titleStation1 = 'Ökonomie - Upcycling';
+  static const titleStation1 = 'Ökonomie - Flächennutzung';
   static const imageStation1 = 'oekonomie.png';
   static const keyStation2 = 'station2';
   static const titleStation2 = 'Ökologie - Erneuerbare Energie';
@@ -20,22 +20,22 @@ class S {
 
   // SPEZIELLE INHALTE
   static const introTitle = 'Dein Ort im Übermorgen';
-  static const station1Title = 'Station zu Ökonomie: Upcycling';
+  static const station1Title = 'Station zu Ökonomie: Flächennutzung';
   static const station1Task =
       'Deine Aufgabe: Wähle für die folgenden 3 Fragen je eine Option aus und schaue dann wie sich deine Entscheidung auswirkt:';
-  static const station1Selection1Description = 'Wähle Option 1 aus:';
-  static const station1Selection1OptionA = '1_A';
-  static const station1Selection1OptionB = '1_B';
-  static const station1Selection2Description = 'Wähle Option 2 aus:';
-  static const station1Selection2OptionA = '2_A';
-  static const station1Selection2OptionB = '2_B';
-  static const station1Selection3Description = 'Wähle Option 3 aus:';
-  static const station1Selection3OptionA = '3_A';
-  static const station1Selection3OptionB = '3_B';
+  static const station1SelectionADescription = 'Wähle Option A aus:';
+  static const station1SelectionAOption1 = 'A_1';
+  static const station1SelectionAOption2 = 'A_2';
+  static const station1SelectionBDescription = 'Wähle Option B aus:';
+  static const station1SelectionBOption1 = 'B_1';
+  static const station1SelectionBOption2 = 'B_2';
+  static const station1SelectionCDescription = 'Wähle Option C aus:';
+  static const station1SelectionCOption1 = 'C_1';
+  static const station1SelectionCOption2 = 'C_2';
 
-  static const station2Title = 'Station zu Ökologie: Mobilität';
+  static const station2Title = 'Station zu Ökologie: Erneuerbare Energie';
   static const station2Task =
-      'Deine Aufgabe: Bitte bastele Windräder, um sauberen Strom zu erzeugen.\n\nDu hast 2 Minuten Zeit. Wieviele Windräder schaffst du?\n\nLass dir vorher kurz zeigen, wie du sie bauen kannst und starte dann den Timer.';
+      'Deine Aufgabe: Bitte bastele Windräder, um sauberen Strom zu erzeugen.\nDu hast 2 Minuten Zeit. Wieviele Windräder schaffst du?\n\nLass dir vorher kurz zeigen, wie du sie bauen kannst und starte dann den Timer.';
   static const station2TimeOutTitle =
       'Fertig! Wieviele Windräder hast du geschafft?';
   static const station2TimeOutSubTitle =

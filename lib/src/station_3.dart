@@ -33,34 +33,41 @@ class _StationThreeState extends State<StationThree> {
                 ),
               ),
             ),
-            const Flexible(
-              flex: L.heightOfContent,
-              child: ProductListView(),
+            Flexible(
+              flex: (L.heightOfContent * 0.8).round(),
+              child: const ProductListView(),
+            ),
+            Flexible(
+              flex: (L.heightOfContent * 0.2).round(),
+              child: Consumer<StateModel>(
+                builder: (BuildContext context, model, Widget? child) {
+                  return Text(
+                    _getFeedbackText(model),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: L.fontSize),
+                  );
+                },
+              ),
             ),
             Flexible(
               flex: L.heightOfFooter,
               child: Align(
-                alignment: Alignment.bottomRight,
+                alignment: Alignment.centerRight,
                 child: Consumer<StateModel>(
                   builder: (BuildContext context, model, Widget? child) {
-                    return Row(
-                      children: [
-                        Text(_getFeedbackText(model)),
-                        TextButton.icon(
-                          icon: const Icon(Icons.check),
-                          label: Text(model.station3Checked ? S.done : S.todo),
-                          style: TextButton.styleFrom(
-                            textStyle: const TextStyle(fontSize: 20),
-                          ),
-                          onPressed: !model.station3Checked
-                              ? () {
-                                  setState(() {
-                                    model.station3SetChecked(true);
-                                  });
-                                }
-                              : null,
-                        ),
-                      ],
+                    return TextButton.icon(
+                      icon: const Icon(Icons.check),
+                      label: Text(model.station3Checked ? S.done : S.todo),
+                      style: TextButton.styleFrom(
+                        textStyle: const TextStyle(fontSize: 20),
+                      ),
+                      onPressed: !model.station3Checked
+                          ? () {
+                              setState(() {
+                                model.station3SetChecked(true);
+                              });
+                            }
+                          : null,
                     );
                   },
                 ),

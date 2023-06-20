@@ -23,21 +23,44 @@ class _StationTwoState extends State<StationTwo> {
         appBar: AppBar(
           title: const Text(S.station2Title),
         ),
-        body: Center(
+        body: Container(
+          padding: const EdgeInsets.all(25.0),
+          alignment: Alignment.center,
+          child: Center(
             child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(25.0),
-              child: const Text(
-                S.station2Task,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: L.fontSize),
-              ),
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Flexible(
+                  flex: L.heightOfTaskDescription,
+                  child: Container(
+                    padding: const EdgeInsets.all(25.0),
+                    child: const Text(
+                      S.station2Task,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: L.fontSize),
+                    ),
+                  ),
+                ),
+                Flexible(
+                  flex: L.heightOfContent,
+                  child: Container(
+                    padding: const EdgeInsets.all(25.0),
+                    child: const Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CountDown(),
+                        ResultArea(),
+                      ],
+                    ),
+                  ),
+                ),
+                const Footer(),
+              ],
             ),
-            const Station2Task1(),
-          ],
-        )),
+          ),
+        ),
       ),
     );
   }
@@ -78,26 +101,32 @@ class _ResultAreaState extends State<ResultArea> {
       builder: (context, model, child) {
         _curSliderValue = model.numberOfWindmills as double;
         return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(model.station2GetNumberOfWindmillsText()),
-            const SizedBox(
-              width: 8.0,
+            const SizedBox(width: 25.0),
+            Text(
+              model.station2GetNumberOfWindmillsText(),
+              style: const TextStyle(fontSize: L.fontSize),
             ),
-            Slider(
-              value: _curSliderValue,
-              max: 20,
-              divisions: 20,
-              label: _curSliderValue.round().toString(),
-              onChanged: model.station2TaskCompleted && !model.station2Checked
-                  ? (double value) {
-                      setState(() {
-                        _curSliderValue = value;
-                        model.station2SetNumberOfWindmillsBuilt(value as int);
-                        model.station2SetTaskCompleted();
-                      });
-                    }
-                  : null,
+            const SizedBox(width: 8.0),
+            Expanded(
+              child: Slider(
+                value: _curSliderValue,
+                max: 20,
+                divisions: 20,
+                label: _curSliderValue.round().toString(),
+                onChanged: model.station2TaskCompleted && !model.station2Checked
+                    ? (double value) {
+                        setState(() {
+                          _curSliderValue = value;
+                          model.station2SetNumberOfWindmillsBuilt(value as int);
+                          model.station2SetTaskCompleted();
+                        });
+                      }
+                    : null,
+              ),
             ),
+            const SizedBox(width: 25.0),
           ],
         );
       },
@@ -132,7 +161,10 @@ class _CountDownState extends State<CountDown> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text(timeLeft.toString()),
+        Text(
+          "Verbleibende Zeit: $timeLeft Sekunden",
+          style: const TextStyle(fontSize: L.fontSize),
+        ),
         Consumer<StateModel>(
           builder: (BuildContext context, model, Widget? child) {
             return FilledButton(
@@ -202,26 +234,29 @@ class Footer extends StatefulWidget {
 class _FooterState extends State<Footer> {
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.bottomRight,
-      child: Consumer<StateModel>(
-        builder: (BuildContext context, model, Widget? child) {
-          return TextButton.icon(
-            icon: const Icon(Icons.check),
-            label: Text(model.station2Checked ? S.done : S.todo),
-            style: TextButton.styleFrom(
-              textStyle: const TextStyle(fontSize: 20),
-            ),
-            onPressed: model.station2TaskCompleted && !model.station2Checked
-                ? () {
-                    setState(() {
-                      model.station2SetChecked(
-                          true); // is marked done so it cann not be marked again.
-                    });
-                  }
-                : null,
-          );
-        },
+    return Flexible(
+      flex: L.heightOfFooter,
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: Consumer<StateModel>(
+          builder: (BuildContext context, model, Widget? child) {
+            return TextButton.icon(
+              icon: const Icon(Icons.check),
+              label: Text(model.station2Checked ? S.done : S.todo),
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: model.station2TaskCompleted && !model.station2Checked
+                  ? () {
+                      setState(() {
+                        model.station2SetChecked(
+                            true); // is marked done so it cann not be marked again.
+                      });
+                    }
+                  : null,
+            );
+          },
+        ),
       ),
     );
   }
