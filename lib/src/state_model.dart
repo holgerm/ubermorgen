@@ -62,6 +62,30 @@ class StateModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  int _numberOfTasksToDo() {
+    int n = 3;
+    if (station1Checked) n--;
+    if (station2Checked) n--;
+    if (station3Checked) n--;
+    return n;
+  }
+
+  String introText() {
+    int n = _numberOfTasksToDo();
+    switch (n) {
+      case 0:
+        return 'Du hast alle Station bearbeitet. Prima!';
+      case 1:
+        return 'Du kannst noch eine Station bearbeiten.\nBitte gehe zu dieser Station und starte die Aufgabe dann hier.';
+      case 3:
+        return 'Willkommen beim "Ort im Übermorgen.\n\nWir haben drei Stationen mit Aufgaben vorbereitet.\nBitte gehe zu einer der Stationen und starte dann hier die passende Aufgabe.';
+      default:
+        return 'Du kannst noch $n Stationen bearbeiten.\nBitte gehe zu einer dieser Stationen und starte dann hier die passende Aufgabe.';
+    }
+  }
+
+  // Sation 1 stuff:
+
   void station1SetTaskCompleted() {
     station1TaskCompleted = true;
     notifyListeners();
@@ -78,6 +102,8 @@ class StateModel extends ChangeNotifier {
     optionASelections[index] = true;
     notifyListeners();
   }
+
+  // Sation 2 stuff:
 
   List<bool> optionBSelections = [false, false];
   setOption2Selection(int index) {

@@ -12,41 +12,48 @@ class Intro extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(S.introTitle),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.info),
-              onPressed: () => showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => Dialog.fullscreen(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      const Text(
-                        S.imprint,
-                        style: TextStyle(fontSize: L.fontSize),
+          centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(Icons.info),
+            onPressed: () => showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => Dialog.fullscreen(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text(
+                      S.imprint,
+                      style: TextStyle(fontSize: L.fontSize),
+                    ),
+                    const SizedBox(height: 15),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        'Schliessen',
                       ),
-                      const SizedBox(height: 15),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text(
-                          'Schliessen',
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
+          ),
+          actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.logout),
               onPressed: () => showDialog<String>(
                 context: context,
                 builder: (BuildContext context) => AlertDialog(
-                  title: const Text('Spiel Zurücksetzen'),
-                  content: const Text('Wirklich alles Löschen?'),
+                  title: const Text(
+                    'Spiel Zurücksetzen',
+                    textAlign: TextAlign.center,
+                  ),
+                  content: const Text(
+                    'Wirklich alles Löschen?',
+                    textAlign: TextAlign.center,
+                  ),
                   actions: <Widget>[
                     TextButton(
                       onPressed: () => Navigator.pop(context, 'Abbrechen'),
@@ -60,6 +67,7 @@ class Intro extends StatelessWidget {
                       child: const Text('Ja, alles Löschen!'),
                     ),
                   ],
+                  actionsAlignment: MainAxisAlignment.spaceEvenly,
                 ),
               ),
             ),
@@ -67,27 +75,48 @@ class Intro extends StatelessWidget {
         ),
         body: Align(
           alignment: Alignment.center,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
+            children: [
               Consumer<StateModel>(
                 builder: (context, model, child) {
-                  bool done = model.station1Checked;
-                  return StationField(done, S.titleStation1, S.imageStation1);
+                  return Text(
+                    model.introText(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: L.fontSize),
+                  );
                 },
               ),
-              Consumer<StateModel>(
-                builder: (context, model, child) {
-                  bool done = model.station2Checked;
-                  return StationField(done, S.titleStation2, S.imageStation2);
-                },
+              const SizedBox(
+                height: 100,
               ),
-              Consumer<StateModel>(
-                builder: (context, model, child) {
-                  bool done = model.station3Checked;
-                  return StationField(done, S.titleStation3, S.imageStation3);
-                },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Consumer<StateModel>(
+                    builder: (context, model, child) {
+                      bool done = model.station1Checked;
+                      return StationField(
+                          done, S.titleStation1, S.imageStation1);
+                    },
+                  ),
+                  Consumer<StateModel>(
+                    builder: (context, model, child) {
+                      bool done = model.station2Checked;
+                      return StationField(
+                          done, S.titleStation2, S.imageStation2);
+                    },
+                  ),
+                  Consumer<StateModel>(
+                    builder: (context, model, child) {
+                      bool done = model.station3Checked;
+                      return StationField(
+                          done, S.titleStation3, S.imageStation3);
+                    },
+                  ),
+                ],
               ),
             ],
           ),
@@ -111,7 +140,7 @@ class StationField extends StatelessWidget {
       decoration: BoxDecoration(
           color: done
               ? const Color.fromARGB(255, 224, 255, 227)
-              : Colors.green[100],
+              : Colors.lightGreen,
           borderRadius: const BorderRadius.all(Radius.circular(20))),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -136,7 +165,15 @@ class StationField extends StatelessWidget {
                       builder: (context) => const StationThree()));
               }
             },
-            child: done ? const Text("Ansehen") : const Text("Starten"),
+            child: done
+                ? const Text(
+                    "Ansehen",
+                    style: TextStyle(color: Colors.grey),
+                  )
+                : const Text(
+                    "Starten",
+                    style: TextStyle(color: Colors.black),
+                  ),
           )
         ],
       ),

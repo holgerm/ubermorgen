@@ -119,7 +119,8 @@ class _ResultAreaState extends State<ResultArea> {
                     ? (double value) {
                         setState(() {
                           _curSliderValue = value;
-                          model.station2SetNumberOfWindmillsBuilt(value as int);
+                          model
+                              .station2SetNumberOfWindmillsBuilt(value.round());
                           model.station2SetTaskCompleted();
                         });
                       }
@@ -144,7 +145,7 @@ class CountDown extends StatefulWidget {
 class _CountDownState extends State<CountDown> {
   int timeLeft = 10;
   bool started = false;
-  late Timer currentTimer;
+  Timer? currentTimer;
   late ByteData timerData;
   late Uint8List timerBytes;
   late ByteData alarmData;
@@ -179,9 +180,9 @@ class _CountDownState extends State<CountDown> {
 
   @override
   void dispose() {
-    super.dispose();
-    player.dispose();
     currentTimer?.cancel();
+    player.dispose();
+    super.dispose();
   }
 
   void _startTimer() {
