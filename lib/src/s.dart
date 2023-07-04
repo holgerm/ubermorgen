@@ -25,15 +25,15 @@ class S {
   static const station1Title = 'Station zu Ökonomie: Flächennutzung';
   static const station1Task =
       'Deine Aufgabe: Wähle für die folgenden 3 Fragen je eine Option aus und schaue dann wie sich deine Entscheidung auswirkt:';
-  static const station1SelectionADescription = 'Wähle Option A aus:';
-  static const station1SelectionAOption1 = 'A_1';
-  static const station1SelectionAOption2 = 'A_2';
-  static const station1SelectionBDescription = 'Wähle Option B aus:';
-  static const station1SelectionBOption1 = 'B_1';
-  static const station1SelectionBOption2 = 'B_2';
-  static const station1SelectionCDescription = 'Wähle Option C aus:';
-  static const station1SelectionCOption1 = 'C_1';
-  static const station1SelectionCOption2 = 'C_2';
+  static const station1SelectionADescription = 'Was soll am rechten Ufer sein?';
+  static const station1SelectionAOption1 = 'Blumenwiese';
+  static const station1SelectionAOption2 = 'Krankenhaus';
+  static const station1SelectionBDescription = 'Welchen Weg legst du an?';
+  static const station1SelectionBOption1 = 'Waldweg';
+  static const station1SelectionBOption2 = 'Asphaltstrasse';
+  static const station1SelectionCDescription = 'Ans linke Ufer kommt was?';
+  static const station1SelectionCOption1 = 'Nutzwald';
+  static const station1SelectionCOption2 = 'Urwald';
 
   static const station2Title = 'Station zu Ökologie: Erneuerbare Energie';
   static const station2Task =

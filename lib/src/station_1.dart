@@ -19,9 +19,10 @@ class _StationOneState extends State<StationOne> {
     return Flexible(
       flex: (L.heightOfContent / 6.0).round(),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Container(
+            width: 200,
             padding: const EdgeInsets.all(25.0),
             child: Text(description),
           ),
@@ -37,7 +38,7 @@ class _StationOneState extends State<StationOne> {
               color: Colors.red[400],
               constraints: const BoxConstraints(
                 minHeight: 40.0,
-                minWidth: 80.0,
+                minWidth: 120.0,
               ),
               isSelected: optionSelections,
               children: <Widget>[
@@ -85,6 +86,7 @@ class _StationOneState extends State<StationOne> {
                       children: [
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             _makeToggleButtonsFor(
                                 S.station1SelectionADescription,
