@@ -22,6 +22,7 @@ class S {
 
   // SPEZIELLE INHALTE
   static const introTitle = 'Dein Ort im Übermorgen';
+
   static const station1Title = 'Station zu Ökonomie: Flächennutzung';
   static const station1Task =
       'Deine Aufgabe: Wähle für die folgenden 3 Fragen je eine Option aus und schaue dann wie sich deine Entscheidung auswirkt:';

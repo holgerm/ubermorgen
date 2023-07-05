@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'ubermorgen.dart' show L, S;
+
 // STATION 1:
 class StateModel extends ChangeNotifier {
   bool station1TaskCompleted = false;
@@ -70,17 +72,113 @@ class StateModel extends ChangeNotifier {
     return n;
   }
 
-  String introText() {
+  Column introTextColumn() {
     int n = _numberOfTasksToDo();
     switch (n) {
       case 0:
-        return 'Du hast alle Station bearbeitet. Prima!';
+        return const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Schön, dass du bei „Dein Ort im Übermorgen“ mitgemacht hast!',
+              textAlign: TextAlign.start,
+              softWrap: true,
+              style: TextStyle(fontSize: L.fontSizeHeader),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'Um die Erderwärmung aufzuhalten, hast du an drei Stationen einen Beitrag für ein nachhaltiges Übermorgen geleistet.',
+              textAlign: TextAlign.start,
+              softWrap: true,
+              style: TextStyle(fontSize: L.fontSize),
+            ),
+            SizedBox(height: 8),
+            Text(
+              "Du hast alle Stationen bearbeitet. Prima!",
+              textAlign: TextAlign.start,
+              softWrap: true,
+              style: TextStyle(fontSize: L.fontSize),
+            ),
+          ],
+        );
       case 1:
-        return 'Du kannst noch eine Station bearbeiten.\nBitte gehe zu dieser Station und starte die Aufgabe dann hier.';
+        return const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Schön, dass du bei „Dein Ort im Übermorgen“ dabei bist!',
+              textAlign: TextAlign.start,
+              softWrap: true,
+              style: TextStyle(fontSize: L.fontSizeHeader),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'Du kannst noch eine Station bearbeiten.',
+              textAlign: TextAlign.start,
+              softWrap: true,
+              style: TextStyle(fontSize: L.fontSize),
+            ),
+            SizedBox(height: 8),
+            Text(
+              "Bitte gehe mit deinem Team zu dieser Station und starte dann die Aufgabe.",
+              textAlign: TextAlign.start,
+              softWrap: true,
+              style: TextStyle(fontSize: L.fontSize),
+            ),
+          ],
+        );
       case 3:
-        return 'Willkommen beim "Ort im Übermorgen.\n\nWir haben drei Stationen mit Aufgaben vorbereitet.\nBitte gehe zu einer der Stationen und starte dann hier die passende Aufgabe.';
+        return const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Herzlich willkommen bei „Dein Ort im Übermorgen“!',
+              textAlign: TextAlign.start,
+              softWrap: true,
+              style: TextStyle(fontSize: L.fontSizeHeader),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'Um die Erderwärmung aufzuhalten, könnt ihr an drei Stationen (nicht linear) euren Beitrag für ein nachhaltiges Übermorgen leisten.',
+              textAlign: TextAlign.start,
+              softWrap: true,
+              style: TextStyle(fontSize: L.fontSize),
+            ),
+            SizedBox(height: 8),
+            Text(
+              "Bitte gehe mit deinem Team zu einer Station und starte die passende Aufgabe.",
+              textAlign: TextAlign.start,
+              softWrap: true,
+              style: TextStyle(fontSize: L.fontSize),
+            ),
+          ],
+        );
       default:
-        return 'Du kannst noch $n Stationen bearbeiten.\nBitte gehe zu einer dieser Stationen und starte dann hier die passende Aufgabe.';
+        return const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Schön, dass du bei „Dein Ort im Übermorgen“ dabei bist!',
+              textAlign: TextAlign.start,
+              softWrap: true,
+              style: TextStyle(fontSize: L.fontSizeHeader),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'Du kannst noch zwei Stationen bearbeiten.',
+              textAlign: TextAlign.start,
+              softWrap: true,
+              style: TextStyle(fontSize: L.fontSize),
+            ),
+            SizedBox(height: 8),
+            Text(
+              "Bitte gehe mit deinem Team zu einer Station und starte die passende Aufgabe.",
+              textAlign: TextAlign.start,
+              softWrap: true,
+              style: TextStyle(fontSize: L.fontSize),
+            ),
+          ],
+        );
     }
   }
 

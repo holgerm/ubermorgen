@@ -79,14 +79,28 @@ class Intro extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Consumer<StateModel>(
-                builder: (context, model, child) {
-                  return Text(
-                    model.introText(),
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: L.fontSize),
-                  );
-                },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    height: 150,
+                    child: Image(
+                      image: AssetImage('assets/images/logo.png'),
+                    ),
+                  ),
+                  const SizedBox(width: 50),
+                  SizedBox(
+                    width: 700,
+                    child: Consumer<StateModel>(
+                      builder: (context, model, child) {
+                        return SizedBox(
+                          width: 550,
+                          child: model.introTextColumn(),
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 100,

@@ -5,4 +5,5 @@ class L {
       100 - (heightOfTaskDescription + heightOfFooter);
 
   static const fontSize = 17.0;
+  static const fontSizeHeader = 28.0;
 }
