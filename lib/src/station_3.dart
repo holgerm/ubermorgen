@@ -52,24 +52,27 @@ class _StationThreeState extends State<StationThree> {
             Flexible(
               flex: L.heightOfFooter,
               child: Align(
-                alignment: Alignment.centerRight,
-                child: Consumer<StateModel>(
-                  builder: (BuildContext context, model, Widget? child) {
-                    return TextButton.icon(
-                      icon: const Icon(Icons.check),
-                      label: Text(model.station3Checked ? S.done : S.todo),
-                      style: TextButton.styleFrom(
-                        textStyle: const TextStyle(fontSize: 20),
-                      ),
-                      onPressed: !model.station3Checked
-                          ? () {
-                              setState(() {
-                                model.station3SetChecked(true);
-                              });
-                            }
-                          : null,
-                    );
-                  },
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  padding: const EdgeInsets.all(25.0),
+                  child: Consumer<StateModel>(
+                    builder: (BuildContext context, model, Widget? child) {
+                      return TextButton.icon(
+                        icon: const Icon(Icons.check),
+                        label: Text(model.station3Checked ? S.done : S.todo),
+                        style: TextButton.styleFrom(
+                          textStyle: const TextStyle(fontSize: 20),
+                        ),
+                        onPressed: !model.station3Checked
+                            ? () {
+                                setState(() {
+                                  model.station3SetChecked(true);
+                                });
+                              }
+                            : null,
+                      );
+                    },
+                  ),
                 ),
               ),
             )

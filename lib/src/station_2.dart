@@ -29,21 +29,21 @@ class _StationTwoState extends State<StationTwo> {
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
-                  flex: L.heightOfTaskDescription,
+                  flex: 35,
                   child: Container(
                     padding: const EdgeInsets.all(25.0),
                     child: const Text(
                       S.station2Task,
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.start,
                       style: TextStyle(fontSize: L.fontSize),
                     ),
                   ),
                 ),
                 Flexible(
-                  flex: L.heightOfContent,
+                  flex: 50,
                   child: Container(
                     padding: const EdgeInsets.all(25.0),
                     child: const Column(
@@ -237,27 +237,30 @@ class _FooterState extends State<Footer> {
   @override
   Widget build(BuildContext context) {
     return Flexible(
-      flex: L.heightOfFooter,
+      flex: 15,
       child: Align(
-        alignment: Alignment.centerRight,
-        child: Consumer<StateModel>(
-          builder: (BuildContext context, model, Widget? child) {
-            return TextButton.icon(
-              icon: const Icon(Icons.check),
-              label: Text(model.station2Checked ? S.done : S.todo),
-              style: TextButton.styleFrom(
-                textStyle: const TextStyle(fontSize: 20),
-              ),
-              onPressed: model.station2TaskCompleted && !model.station2Checked
-                  ? () {
-                      setState(() {
-                        model.station2SetChecked(
-                            true); // is marked done so it cann not be marked again.
-                      });
-                    }
-                  : null,
-            );
-          },
+        alignment: Alignment.centerLeft,
+        child: Container(
+          padding: const EdgeInsets.all(25.0),
+          child: Consumer<StateModel>(
+            builder: (BuildContext context, model, Widget? child) {
+              return TextButton.icon(
+                icon: const Icon(Icons.check),
+                label: Text(model.station2Checked ? S.done : S.todo),
+                style: TextButton.styleFrom(
+                  textStyle: const TextStyle(fontSize: 20),
+                ),
+                onPressed: model.station2TaskCompleted && !model.station2Checked
+                    ? () {
+                        setState(() {
+                          model.station2SetChecked(
+                              true); // is marked done so it cann not be marked again.
+                        });
+                      }
+                    : null,
+              );
+            },
+          ),
         ),
       ),
     );

@@ -74,12 +74,12 @@ class _StationOneState extends State<StationOne> {
                       padding: const EdgeInsets.all(25.0),
                       child: const Text(
                         S.station1Task,
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.start,
                         style: TextStyle(fontSize: L.fontSize),
                       ),
                     ),
                   ),
-                  Flexible(
+                  Expanded(
                     flex: L.heightOfContent,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -108,53 +108,54 @@ class _StationOneState extends State<StationOne> {
                                 model.optionCSelections),
                           ],
                         ),
-                        Stack(
-                          children: <Widget>[
-                            SizedBox(
-                              width: 500,
-                              height: 350,
-                              child:
-                                  Image.asset('assets/images/s1_original.png'),
-                            ),
-                            Consumer<StateModel>(
-                              builder:
-                                  (BuildContext context, model, Widget? child) {
-                                return SizedBox(
-                                  width: 500,
-                                  height: 350,
-                                  child: imageA(model),
-                                );
-                              },
-                            ),
-                            Consumer<StateModel>(
-                              builder:
-                                  (BuildContext context, model, Widget? child) {
-                                return SizedBox(
-                                  width: 500,
-                                  height: 350,
-                                  child: imageB(model),
-                                );
-                              },
-                            ),
-                            Consumer<StateModel>(
-                              builder:
-                                  (BuildContext context, model, Widget? child) {
-                                return SizedBox(
-                                  width: 500,
-                                  height: 350,
-                                  child: imageC(model),
-                                );
-                              },
-                            ),
-                          ],
+                        Expanded(
+                          child: Stack(
+                            children: <Widget>[
+                              SizedBox(
+                                width: 550,
+                                child: Image.asset(
+                                    'assets/images/s1_original.png'),
+                              ),
+                              Consumer<StateModel>(
+                                builder: (BuildContext context, model,
+                                    Widget? child) {
+                                  return SizedBox(
+                                    width: 500,
+                                    height: 350,
+                                    child: imageA(model),
+                                  );
+                                },
+                              ),
+                              Consumer<StateModel>(
+                                builder: (BuildContext context, model,
+                                    Widget? child) {
+                                  return SizedBox(
+                                    width: 500,
+                                    height: 350,
+                                    child: imageB(model),
+                                  );
+                                },
+                              ),
+                              Consumer<StateModel>(
+                                builder: (BuildContext context, model,
+                                    Widget? child) {
+                                  return SizedBox(
+                                    width: 500,
+                                    height: 350,
+                                    child: imageC(model),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
                   ),
-                  Flexible(
-                    flex: L.heightOfFooter,
-                    child: Align(
-                      alignment: Alignment.centerRight,
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      padding: const EdgeInsets.all(25.0),
                       child: Consumer<StateModel>(
                         builder: (BuildContext context, model, Widget? child) {
                           return TextButton.icon(

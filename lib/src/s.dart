@@ -23,22 +23,28 @@ class S {
   // SPEZIELLE INHALTE
   static const introTitle = 'Dein Ort im Übermorgen';
 
-  static const station1Title = 'Station zu Ökonomie: Flächennutzung';
+  static const station1Title = 'Station Flächennutzung';
   static const station1Task =
-      'Deine Aufgabe: Wähle für die folgenden 3 Fragen je eine Option aus und schaue dann wie sich deine Entscheidung auswirkt:';
+      'Beim Thema Nachhaltigkeit müssen soziale, ökologische und wirtschaftliche Aspekte berücksichtigt werden. Manchmal ist das gar nicht so einfach… Wie entscheidet ihr euch?\n\n'
+      'Wählt für die folgenden 3 Fragen je eine Option aus. Schaut dann, wie sich eure Entscheidung auswirkt:';
   static const station1SelectionADescription = 'Was soll am rechten Ufer sein?';
   static const station1SelectionAOption1 = 'Blumenwiese';
   static const station1SelectionAOption2 = 'Krankenhaus';
-  static const station1SelectionBDescription = 'Welchen Weg legst du an?';
-  static const station1SelectionBOption1 = 'Waldweg';
-  static const station1SelectionBOption2 = 'Asphaltstrasse';
-  static const station1SelectionCDescription = 'Ans linke Ufer kommt was?';
+  static const station1SelectionBDescription =
+      'Welchen Weg legst du an der linken Flussseite an?';
+  static const station1SelectionBOption1 = 'Naturweg';
+  static const station1SelectionBOption2 = 'Asphaltweg';
+  static const station1SelectionCDescription =
+      'Welcher Wald soll neben dem Weg sein?';
   static const station1SelectionCOption1 = 'Nutzwald';
   static const station1SelectionCOption2 = 'Urwald';
 
-  static const station2Title = 'Station zu Ökologie: Erneuerbare Energie';
+  static const station2Title = 'Station Erneuerbare Energie';
   static const station2Task =
-      'Deine Aufgabe: Bitte bastele Windräder, um sauberen Strom zu erzeugen.\nDu hast 2 Minuten Zeit. Wieviele Windräder schaffst du?\n\nLass dir vorher kurz zeigen, wie du sie bauen kannst und starte dann den Timer.';
+      'Eure Aufgabe: Bastelt gemeinsam innerhalb von einer Minute so viele Windräder wie möglich, um erneuerbare Energie auszubauen.\n\n'
+      'Wie ein Windrad aussieht, seht ihr im beiliegenden Bauplan.\n\n'
+      'Wie viele Windräder schafft ihr?\n\n'
+      'Wenn ihr auf „Start“ drückt, läuft die Zeit.';
   static const station2TimeOutTitle =
       'Fertig! Wieviele Windräder hast du geschafft?';
   static const station2TimeOutSubTitle =
@@ -46,7 +52,8 @@ class S {
   static const station2AfterDoneDescription =
       'Stelle die Zahl bitte auf dem Schieberegler ein und klcike danach auf "Erledigt"';
 
-  static const station3Title = 'Station zu Sozialem: Fairer Handel';
+  static const station3Title = 'Station Fairer Handel';
   static const station3Task =
-      'Deine Aufgabe: Hier geht es darum, die 5 meistgekauften fair gehandelten Produkte in die richtige Reihenfolge zu bringen. \nVerschiebe einfach die unten angezeigten Produkte in die richtige Reihenfolge (oben das meistverkaufte):';
+      'Verschiebt die unten angezeigten fair gehandelten Produkte in die richtige (absteigende) Reihenfolge.\n\n'
+      'Ganz oben: Das meistgekaufte Produkt in Deutschland.';
 }
