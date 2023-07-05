@@ -112,22 +112,22 @@ class Intro extends StatelessWidget {
                   Consumer<StateModel>(
                     builder: (context, model, child) {
                       bool done = model.station1Checked;
-                      return StationField(
-                          done, S.titleStation1, S.imageStation1);
+                      return StationField(done, S.titleStation1,
+                          S.imageStation1, L.s1color, L.s1colorCompleted);
                     },
                   ),
                   Consumer<StateModel>(
                     builder: (context, model, child) {
                       bool done = model.station2Checked;
-                      return StationField(
-                          done, S.titleStation2, S.imageStation2);
+                      return StationField(done, S.titleStation2,
+                          S.imageStation2, L.s2color, L.s2colorCompleted);
                     },
                   ),
                   Consumer<StateModel>(
                     builder: (context, model, child) {
                       bool done = model.station3Checked;
-                      return StationField(
-                          done, S.titleStation3, S.imageStation3);
+                      return StationField(done, S.titleStation3,
+                          S.imageStation3, L.s3color, L.s3colorCompleted);
                     },
                   ),
                 ],
@@ -144,17 +144,19 @@ class StationField extends StatelessWidget {
   final bool done;
   final String title;
   final String iconname;
+  final Color col;
+  final Color colCompleted;
 
-  const StationField(this.done, this.title, this.iconname, {super.key});
+  const StationField(
+      this.done, this.title, this.iconname, this.col, this.colCompleted,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-          color: done
-              ? const Color.fromARGB(255, 224, 255, 227)
-              : Colors.lightGreen,
+          color: done ? colCompleted : col,
           borderRadius: const BorderRadius.all(Radius.circular(20))),
       child: Column(
         mainAxisSize: MainAxisSize.min,
