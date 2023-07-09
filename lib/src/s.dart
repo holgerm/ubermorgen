@@ -26,8 +26,9 @@ class S {
   static const station1Title = 'Station Flächennutzung';
   static const station1Task =
       'Beim Thema Nachhaltigkeit müssen soziale, ökologische und wirtschaftliche Aspekte berücksichtigt werden. Manchmal ist das gar nicht so einfach… Wie entscheidet ihr euch?\n\n'
-      'Wählt für die folgenden 3 Fragen je eine Option aus. Schaut dann, wie sich eure Entscheidung auswirkt:';
+      'Wählt für die folgenden 3 Fragen je eine Option aus. Schaut dabei, wie sich eure Entscheidung auswirkt:';
   static const station1SelectionADescription = 'Was soll am rechten Ufer sein?';
+  // '\nBlumenwiese - Super für Insekten und andere Tiere';
   static const station1SelectionAOption1 = 'Blumenwiese';
   static const station1SelectionAOption2 = 'Krankenhaus';
   static const station1SelectionBDescription =

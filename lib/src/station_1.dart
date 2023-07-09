@@ -15,21 +15,24 @@ class _StationOneState extends State<StationOne> {
       final String optionA,
       final String optionB,
       Function(int) setOptionMethod,
-      List<bool> optionSelections) {
+      List<bool> optionSelections,
+      String firstItemDescription,
+      String secondItemDescription) {
     return Flexible(
       flex: (L.heightOfContent / 6.0).round(),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             width: 200,
-            padding: const EdgeInsets.all(25.0),
+            padding: const EdgeInsets.all(15.0),
             child: Text(description),
           ),
           Container(
-            padding: const EdgeInsets.all(25.0),
+            padding: const EdgeInsets.all(15.0),
             child: ToggleButtons(
-              direction: Axis.horizontal,
+              direction: Axis.vertical,
               onPressed: setOptionMethod,
               borderRadius: const BorderRadius.all(Radius.circular(8)),
               selectedBorderColor: Colors.red[700],
@@ -47,6 +50,18 @@ class _StationOneState extends State<StationOne> {
               ],
             ),
           ),
+          Container(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(firstItemDescription),
+                const SizedBox(height: 22),
+                Text(secondItemDescription),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -60,7 +75,7 @@ class _StationOneState extends State<StationOne> {
           title: const Text(S.station1Title),
         ),
         body: Container(
-          padding: const EdgeInsets.all(25.0),
+          padding: const EdgeInsets.all(15.0),
           alignment: Alignment.center,
           child: Consumer<StateModel>(
             builder: (BuildContext context, model, Widget? child) {
@@ -71,7 +86,7 @@ class _StationOneState extends State<StationOne> {
                   Flexible(
                     flex: L.heightOfTaskDescription,
                     child: Container(
-                      padding: const EdgeInsets.all(25.0),
+                      padding: const EdgeInsets.all(15.0),
                       child: const Text(
                         S.station1Task,
                         textAlign: TextAlign.start,
@@ -85,6 +100,7 @@ class _StationOneState extends State<StationOne> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Column(
+                          // All what is left from the images
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -93,19 +109,25 @@ class _StationOneState extends State<StationOne> {
                                 S.station1SelectionAOption1,
                                 S.station1SelectionAOption2,
                                 model.setOption1Selection,
-                                model.optionASelections),
+                                model.optionASelections,
+                                "Super für Insekten und andere Tiere",
+                                "Wichtig für die Versorgung von Kranken"),
                             _makeToggleButtonsFor(
                                 S.station1SelectionBDescription,
                                 S.station1SelectionBOption1,
                                 S.station1SelectionBOption2,
                                 model.setOption2Selection,
-                                model.optionBSelections),
+                                model.optionBSelections,
+                                "Weniger Flächenversiegelung ist\ngut für Pflanzen und Tiere",
+                                "Barrierefreiheit für alle\n(Rollstuhl, Kinderwagen, …)"),
                             _makeToggleButtonsFor(
                                 S.station1SelectionCDescription,
                                 S.station1SelectionCOption1,
                                 S.station1SelectionCOption2,
                                 model.setOption3Selection,
-                                model.optionCSelections),
+                                model.optionCSelections,
+                                "Artenreicher und an den\nKlimawandel angepasster Wald",
+                                "Das Holz kann für nachhaltiges\nHeizen genutzt werden"),
                           ],
                         ),
                         Expanded(
@@ -113,6 +135,7 @@ class _StationOneState extends State<StationOne> {
                             children: <Widget>[
                               SizedBox(
                                 width: 500,
+                                height: 350,
                                 child: Image.asset(
                                     'assets/images/s1_original.png'),
                               ),
@@ -155,7 +178,7 @@ class _StationOneState extends State<StationOne> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Container(
-                      padding: const EdgeInsets.all(25.0),
+                      padding: const EdgeInsets.all(15.0),
                       child: Consumer<StateModel>(
                         builder: (BuildContext context, model, Widget? child) {
                           return TextButton.icon(
