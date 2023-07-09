@@ -252,11 +252,11 @@ class StateModel extends ChangeNotifier {
 
   String station2GetNumberOfWindmillsText() {
     if (numberOfWindmills == 0) {
-      return "Ich habe noch keine Windräder gebaut.";
+      return " noch keine Windräder gebaut.";
     } else if (numberOfWindmills == 1) {
-      return "Ich habe ein Windrad gebaut.";
+      return " ein Windrad gebaut.";
     } else {
-      return "Ich habe $numberOfWindmills Windräder gebaut";
+      return " $numberOfWindmills Windräder gebaut";
     }
   }
 

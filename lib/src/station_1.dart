@@ -112,7 +112,7 @@ class _StationOneState extends State<StationOne> {
                           child: Stack(
                             children: <Widget>[
                               SizedBox(
-                                width: 550,
+                                width: 500,
                                 child: Image.asset(
                                     'assets/images/s1_original.png'),
                               ),

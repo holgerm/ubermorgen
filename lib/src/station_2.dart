@@ -47,7 +47,7 @@ class _StationTwoState extends State<StationTwo> {
                   child: Container(
                     padding: const EdgeInsets.all(25.0),
                     child: const Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         CountDown(),
@@ -101,12 +101,11 @@ class _ResultAreaState extends State<ResultArea> {
       builder: (context, model, child) {
         _curSliderValue = model.numberOfWindmills.toDouble();
         return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(width: 25.0),
-            Text(
-              model.station2GetNumberOfWindmillsText(),
-              style: const TextStyle(fontSize: L.fontSize),
+            const Text(
+              "Ich habe ",
+              style: TextStyle(fontSize: L.fontSize),
             ),
             const SizedBox(width: 8.0),
             Expanded(
@@ -126,6 +125,11 @@ class _ResultAreaState extends State<ResultArea> {
                       }
                     : null,
               ),
+            ),
+            const SizedBox(width: 8.0),
+            Text(
+              model.station2GetNumberOfWindmillsText(),
+              style: const TextStyle(fontSize: L.fontSize),
             ),
             const SizedBox(width: 25.0),
           ],
@@ -160,12 +164,13 @@ class _CountDownState extends State<CountDown> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text(
-          "Verbleibende Zeit: $timeLeft Sekunden",
-          style: const TextStyle(fontSize: L.fontSize),
+        const Text(
+          "Wenn ihr auf „Start“ drückt, läuft die Zeit.",
+          style: TextStyle(fontSize: L.fontSize),
         ),
+        const SizedBox(width: 80),
         Consumer<StateModel>(
           builder: (BuildContext context, model, Widget? child) {
             return FilledButton(
@@ -173,6 +178,11 @@ class _CountDownState extends State<CountDown> {
               child: const Text(S.start),
             );
           },
+        ),
+        const SizedBox(width: 80),
+        Text(
+          "Verbleibende Zeit: $timeLeft Sekunden",
+          style: const TextStyle(fontSize: L.fontSize),
         ),
       ],
     );
@@ -256,6 +266,20 @@ class _FooterState extends State<Footer> {
                           model.station2SetChecked(
                               true); // is marked done so it cann not be marked again.
                         });
+                        showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: const Text("Noch eine Bitte:"),
+                            content: const Text(
+                                "Bitte baut die Windräder für die nächste Gruppe wieder ab."),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, 'OK'),
+                                child: const Text('OK'),
+                              ),
+                            ],
+                          ),
+                        );
                       }
                     : null,
               );

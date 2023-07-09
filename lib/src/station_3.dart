@@ -68,6 +68,36 @@ class _StationThreeState extends State<StationThree> {
                                 setState(() {
                                   model.station3SetChecked(true);
                                 });
+                                showDialog<String>(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      AlertDialog(
+                                    title: const Text(
+                                      "Möchtet ihr in Zukunft darauf achten,\nFairtrade-Produkte zu kaufen?",
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    content: const Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                            "Dann achtet doch mal auf eines der folgenden Logos:"),
+                                        SizedBox(height: 30),
+                                        Image(
+                                          height: 150,
+                                          image: AssetImage(
+                                              'assets/images/fair.png'),
+                                        ),
+                                      ],
+                                    ),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(context, 'OK'),
+                                        child: const Text('OK'),
+                                      ),
+                                    ],
+                                  ),
+                                );
                               }
                             : null,
                       );
