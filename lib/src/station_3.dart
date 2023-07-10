@@ -68,36 +68,7 @@ class _StationThreeState extends State<StationThree> {
                                 setState(() {
                                   model.station3SetChecked(true);
                                 });
-                                showDialog<String>(
-                                  context: context,
-                                  builder: (BuildContext context) =>
-                                      AlertDialog(
-                                    title: const Text(
-                                      "Möchtet ihr in Zukunft darauf achten,\nFairtrade-Produkte zu kaufen?",
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    content: const Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Text(
-                                            "Dann achtet doch mal auf eines der folgenden Logos:"),
-                                        SizedBox(height: 30),
-                                        Image(
-                                          height: 150,
-                                          image: AssetImage(
-                                              'assets/images/fair.png'),
-                                        ),
-                                      ],
-                                    ),
-                                    actions: <Widget>[
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.pop(context, 'OK'),
-                                        child: const Text('OK'),
-                                      ),
-                                    ],
-                                  ),
-                                );
+                                showFeedbackDialog(context, model);
                               }
                             : null,
                       );
@@ -108,6 +79,59 @@ class _StationThreeState extends State<StationThree> {
             )
           ],
         ),
+      ),
+    );
+  }
+
+  void showFeedbackDialog(BuildContext context, StateModel model) {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text(
+          "Dein Ergebnis:",
+          textAlign: TextAlign.center,
+        ),
+        content: Text(_getFeedbackText(model)),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              showFairTippDialog(context);
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void showFairTippDialog(BuildContext context) {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text(
+          "Möchtet ihr in Zukunft darauf achten,\nFairtrade-Produkte zu kaufen?",
+          textAlign: TextAlign.center,
+        ),
+        content: const Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text("Dann achtet doch mal auf eines der folgenden Logos:"),
+            SizedBox(height: 30),
+            Image(
+              height: 150,
+              image: AssetImage('assets/images/fair.png'),
+            ),
+          ],
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context, 'OK');
+              Navigator.pop(context, 'OK');
+            },
+            child: const Text('OK'),
+          ),
+        ],
       ),
     );
   }
