@@ -139,7 +139,7 @@ class StateModel extends ChangeNotifier {
             ),
             SizedBox(height: 8),
             Text(
-              'Um die Erderwärmung aufzuhalten, könnt ihr an drei Stationen (nicht linear) euren Beitrag für ein nachhaltiges Übermorgen leisten.',
+              'Um die Erderwärmung aufzuhalten, könnt ihr an drei Stationen euren Beitrag für ein nachhaltiges Übermorgen leisten (Reihenfolge egal).',
               textAlign: TextAlign.start,
               softWrap: true,
               style: TextStyle(fontSize: L.fontSize),

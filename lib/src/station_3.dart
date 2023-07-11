@@ -11,9 +11,24 @@ class StationThree extends StatefulWidget {
 
 class _StationThreeState extends State<StationThree> {
   int index = 0;
+  late final model = Provider.of<StateModel>(context);
+
+  @override
+  void dispose() {
+    model.removeListener(_showDialog);
+    super.dispose();
+  }
+
+  Future<void> _showDialog() async {
+    if (!mounted) return;
+    // `hasToShowDialog` could be a getter and not a variable.
+    if (model.numberOfErrors == 0) showFairTippDialog(context);
+  }
 
   @override
   Widget build(BuildContext context) {
+    //model.addListener(_showDialog); TODO falls wir den Dialog ans Ende stellen wollen und erst zeigen, wenn alles richtig
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -57,10 +72,10 @@ class _StationThreeState extends State<StationThree> {
                   padding: const EdgeInsets.all(25.0),
                   child: Consumer<StateModel>(
                     builder: (BuildContext context, model, Widget? child) {
-                      return TextButton.icon(
+                      return FilledButton.icon(
                         icon: const Icon(Icons.check),
                         label: Text(model.station3Checked ? S.done : S.todo),
-                        style: TextButton.styleFrom(
+                        style: FilledButton.styleFrom(
                           textStyle: const TextStyle(fontSize: 20),
                         ),
                         onPressed: !model.station3Checked
@@ -93,8 +108,9 @@ class _StationThreeState extends State<StationThree> {
         ),
         content: Text(_getFeedbackText(model)),
         actions: <Widget>[
-          TextButton(
+          FilledButton(
             onPressed: () {
+              Navigator.pop(context, 'OK');
               showFairTippDialog(context);
             },
             child: const Text('OK'),
@@ -124,9 +140,8 @@ class _StationThreeState extends State<StationThree> {
           ],
         ),
         actions: <Widget>[
-          TextButton(
+          FilledButton(
             onPressed: () {
-              Navigator.pop(context, 'OK');
               Navigator.pop(context, 'OK');
             },
             child: const Text('OK'),

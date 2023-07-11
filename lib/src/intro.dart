@@ -154,6 +154,7 @@ class StationField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 170,
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
           color: done ? colCompleted : col,

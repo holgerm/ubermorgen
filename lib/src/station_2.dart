@@ -147,7 +147,7 @@ class CountDown extends StatefulWidget {
 }
 
 class _CountDownState extends State<CountDown> {
-  int timeLeft = 10;
+  int timeLeft = 30;
   bool started = false;
   Timer? currentTimer;
   late ByteData timerData;
@@ -254,10 +254,10 @@ class _FooterState extends State<Footer> {
           padding: const EdgeInsets.all(25.0),
           child: Consumer<StateModel>(
             builder: (BuildContext context, model, Widget? child) {
-              return TextButton.icon(
+              return FilledButton.icon(
                 icon: const Icon(Icons.check),
                 label: Text(model.station2Checked ? S.done : S.todo),
-                style: TextButton.styleFrom(
+                style: FilledButton.styleFrom(
                   textStyle: const TextStyle(fontSize: 20),
                 ),
                 onPressed: model.station2TaskCompleted && !model.station2Checked

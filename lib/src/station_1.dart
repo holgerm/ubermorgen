@@ -126,8 +126,8 @@ class _StationOneState extends State<StationOne> {
                                 S.station1SelectionCOption2,
                                 model.setOption3Selection,
                                 model.optionCSelections,
-                                "Artenreicher und an den\nKlimawandel angepasster Wald",
-                                "Das Holz kann für nachhaltiges\nHeizen genutzt werden"),
+                                "Das Holz kann für nachhaltiges\nHeizen genutzt werden",
+                                "Artenreicher und an den\nKlimawandel angepasster Wald"),
                           ],
                         ),
                         Expanded(
@@ -181,22 +181,40 @@ class _StationOneState extends State<StationOne> {
                       padding: const EdgeInsets.all(15.0),
                       child: Consumer<StateModel>(
                         builder: (BuildContext context, model, Widget? child) {
-                          return TextButton.icon(
+                          return FilledButton.icon(
                             icon: const Icon(Icons.check),
                             label:
                                 Text(model.station1Checked ? S.done : S.todo),
                             style: TextButton.styleFrom(
                               textStyle: const TextStyle(fontSize: 20),
                             ),
-                            onPressed:
-                                model.canCheckInTask() && !model.station1Checked
-                                    ? () {
-                                        setState(() {
-                                          model.station1SetChecked(true,
-                                              model.makeImageNameFromOptions());
-                                        });
-                                      }
-                                    : null,
+                            onPressed: model.canCheckInTask() &&
+                                    !model.station1Checked
+                                ? () {
+                                    setState(() {
+                                      model.station1SetChecked(true,
+                                          model.makeImageNameFromOptions());
+                                    });
+                                    showDialog<String>(
+                                      context: context,
+                                      builder: (BuildContext context) =>
+                                          AlertDialog(
+                                        title: const Text(
+                                            "Vielen Dank, dass ihr nach bestem Wissen und Gewissen gehandelt und euch entschieden habt!"),
+                                        content: const Text(
+                                            "So sieht euer Ort im Übermorgen aus!"
+                                            "\n\nIhr könnt aber weiter alle Optionen ausprobieren."),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            onPressed: () =>
+                                                Navigator.pop(context, 'OK'),
+                                            child: const Text('OK'),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  }
+                                : null,
                           );
                         },
                       ),
