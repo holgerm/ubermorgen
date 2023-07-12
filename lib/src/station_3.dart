@@ -25,7 +25,7 @@ class _StationThreeState extends State<StationThree> {
     if (!mounted ||
         !model.station3Checked ||
         fairDialogShown ||
-        model.numberOfErrors == 0) {
+        model.numberOfErrors != 0) {
       return;
     }
     // `hasToShowDialog` could be a getter and not a variable.
