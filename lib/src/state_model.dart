@@ -315,25 +315,21 @@ class StateModel extends ChangeNotifier {
         numberOfErrors = numberOfErrors + 1;
       }
     }
-    print("#1");
     notifyListeners();
   }
 
   void station3SetTaskCompleted() {
     station3TaskCompleted = true;
-    print("#2");
     notifyListeners();
   }
 
   void station3SetCanBeMarkedAsDone(bool value) {
     station3CanBeMarkedDone = value;
-    print("#3");
     notifyListeners();
   }
 
   void station3SetChecked(bool value) {
     station3Checked = value;
-    print("#4");
     notifyListeners();
   }
 }

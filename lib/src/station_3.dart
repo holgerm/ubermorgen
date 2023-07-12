@@ -25,12 +25,9 @@ class _StationThreeState extends State<StationThree> {
     if (!mounted ||
         !model.station3Checked ||
         fairDialogShown ||
-        model.numberOfErrors != 0) {
-      print("_showDialog() abgebrochen wegen mit shown: " +
-          fairDialogShown.toString());
+        model.numberOfErrors == 0) {
       return;
     }
-    print("_showDialog() shown: " + fairDialogShown.toString());
     // `hasToShowDialog` could be a getter and not a variable.
     showDialog<String>(
       context: context,
@@ -55,6 +52,7 @@ class _StationThreeState extends State<StationThree> {
 
   @override
   Widget build(BuildContext context) {
+    model.removeListener(_showDialog);
     model.addListener(
         _showDialog); //TODO falls wir den Dialog ans Ende stellen wollen und erst zeigen, wenn alles richtig
 
