@@ -19,15 +19,44 @@ class _StationThreeState extends State<StationThree> {
     super.dispose();
   }
 
-  Future<void> _showDialog() async {
-    if (!mounted) return;
+  var fairDialogShown = false;
+
+  void _showDialog() {
+    if (!mounted ||
+        !model.station3Checked ||
+        fairDialogShown ||
+        model.numberOfErrors != 0) {
+      print("_showDialog() abgebrochen wegen mit shown: " +
+          fairDialogShown.toString());
+      return;
+    }
+    print("_showDialog() shown: " + fairDialogShown.toString());
     // `hasToShowDialog` could be a getter and not a variable.
-    if (model.numberOfErrors == 0) showFairTippDialog(context);
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text(
+          "Jetzt sind alle richtig angeordnet!",
+          textAlign: TextAlign.center,
+        ),
+        //content: Text(_getFeedbackText(model)),
+        actions: <Widget>[
+          FilledButton(
+            onPressed: () {
+              Navigator.pop(context, 'OK');
+              if (model.numberOfErrors == 0) showFairTippDialog(context);
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    //model.addListener(_showDialog); TODO falls wir den Dialog ans Ende stellen wollen und erst zeigen, wenn alles richtig
+    model.addListener(
+        _showDialog); //TODO falls wir den Dialog ans Ende stellen wollen und erst zeigen, wenn alles richtig
 
     return SafeArea(
       child: Scaffold(
@@ -111,7 +140,7 @@ class _StationThreeState extends State<StationThree> {
           FilledButton(
             onPressed: () {
               Navigator.pop(context, 'OK');
-              showFairTippDialog(context);
+              if (model.numberOfErrors == 0) showFairTippDialog(context);
             },
             child: const Text('OK'),
           ),
@@ -121,6 +150,7 @@ class _StationThreeState extends State<StationThree> {
   }
 
   void showFairTippDialog(BuildContext context) {
+    fairDialogShown = true;
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -196,11 +226,7 @@ class ProductListView extends StatelessWidget {
               ),
           ],
           onReorder: (int oldIndex, int newIndex) {
-            if (oldIndex < newIndex) {
-              newIndex -= 1;
-            }
-            final List item = model.removeItemAt(oldIndex);
-            model.insert(newIndex, item);
+            model.reorderItems(oldIndex, newIndex);
           },
         );
       },

@@ -153,45 +153,50 @@ class StationField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 170,
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-          color: done ? colCompleted : col,
-          borderRadius: const BorderRadius.all(Radius.circular(20))),
+    return OutlinedButton(
+      style: ButtonStyle(
+        padding:
+            MaterialStateProperty.resolveWith<EdgeInsetsGeometry>((states) {
+          return const EdgeInsets.all(20.0);
+        }),
+        backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+          return L.getMaterialColor(done ? colCompleted : col);
+        }),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(22.0),
+          ),
+        ),
+      ),
+      onPressed: () {
+        switch (title) {
+          case S.titleStation1:
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const StationOne()));
+            break;
+          case S.titleStation2:
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const StationTwo()));
+            break;
+          case S.titleStation3:
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const StationThree()));
+        }
+      },
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         children: [
-          Text(title),
-          const SizedBox(height: 8),
-          ImageIcon(AssetImage('assets/images/$iconname'), size: 75),
-          const SizedBox(height: 8),
-          OutlinedButton(
-            onPressed: () {
-              switch (title) {
-                case S.titleStation1:
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const StationOne()));
-                  break;
-                case S.titleStation2:
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const StationTwo()));
-                  break;
-                case S.titleStation3:
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const StationThree()));
-              }
-            },
-            child: done
-                ? const Text(
-                    "Ansehen",
-                    style: TextStyle(color: Colors.grey),
-                  )
-                : const Text(
-                    "Starten",
-                    style: TextStyle(color: Colors.black),
-                  ),
-          )
+          Image(
+            image: done
+                ? AssetImage('assets/images/${iconname}_done.png')
+                : AssetImage('assets/images/$iconname.png'),
+            width: 150,
+            //color: null,
+          ),
+          Text(
+            title,
+            style: const TextStyle(fontSize: L.fontSize),
+            textAlign: TextAlign.center,
+          ),
         ],
       ),
     );

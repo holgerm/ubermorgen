@@ -302,35 +302,38 @@ class StateModel extends ChangeNotifier {
 
   int numberOfErrors = 5;
 
-  removeItemAt(int oldIndex) {
-    var result = items.removeAt(oldIndex);
-    notifyListeners();
-    return result;
-  }
+  void reorderItems(int first, int second) {
+    if (first < second) {
+      second -= 1;
+    }
+    final List item = items.removeAt(first);
+    items.insert(second, item);
 
-  void insert(int newIndex, var item) {
-    items.insert(newIndex, item);
-    notifyListeners();
-  }
-
-  void station3SetTaskCompleted() {
-    station3TaskCompleted = true;
-    notifyListeners();
-  }
-
-  void station3SetCanBeMarkedAsDone(bool value) {
-    station3CanBeMarkedDone = value;
-    notifyListeners();
-  }
-
-  void station3SetChecked(bool value) {
-    station3Checked = value;
     numberOfErrors = 0;
     for (var it in items) {
       if (items.indexOf(it) != it[3]) {
         numberOfErrors = numberOfErrors + 1;
       }
     }
+    print("#1");
+    notifyListeners();
+  }
+
+  void station3SetTaskCompleted() {
+    station3TaskCompleted = true;
+    print("#2");
+    notifyListeners();
+  }
+
+  void station3SetCanBeMarkedAsDone(bool value) {
+    station3CanBeMarkedDone = value;
+    print("#3");
+    notifyListeners();
+  }
+
+  void station3SetChecked(bool value) {
+    station3Checked = value;
+    print("#4");
     notifyListeners();
   }
 }
