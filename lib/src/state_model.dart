@@ -64,7 +64,7 @@ class StateModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  int _numberOfTasksToDo() {
+  int numberOfTasksToDo() {
     int n = 3;
     if (station1Checked) n--;
     if (station2Checked) n--;
@@ -73,7 +73,7 @@ class StateModel extends ChangeNotifier {
   }
 
   Column introTextColumn() {
-    int n = _numberOfTasksToDo();
+    int n = numberOfTasksToDo();
     switch (n) {
       case 0:
         return const Column(

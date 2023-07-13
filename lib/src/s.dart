@@ -18,7 +18,7 @@ class S {
   static const todo = "Einchecken";
   static const done = 'Fertig';
   static const imprint =
-      "Impressum:\n\nEine App von Q3 - Quartier für Medien.Bildung.Abenteuer";
+      "Impressum:\n\nEine App von Q3. Quartier für Medien.Bildung.Abenteuer";
 
   // SPEZIELLE INHALTE
   static const introTitle = 'Dein Ort im Übermorgen';
@@ -42,7 +42,7 @@ class S {
 
   static const station2Title = 'Station Erneuerbare Energie';
   static const station2Task =
-      'Eure Aufgabe: Bastelt gemeinsam innerhalb von einer Minute so viele Windräder wie möglich, um erneuerbare Energie auszubauen.\n\n'
+      'Eure Aufgabe: Bastelt gemeinsam innerhalb von einer halben Minute so viele Windräder wie möglich, um erneuerbare Energie auszubauen.\n\n'
       'Wie ein Windrad aussieht, seht ihr im beiliegenden Bauplan.\n\n'
       'Wie viele Windräder schafft ihr?\n\n'
       'Wenn ihr auf „Start“ drückt, läuft die Zeit.';
@@ -57,4 +57,7 @@ class S {
   static const station3Task =
       'Verschiebt die unten angezeigten fair gehandelten Produkte in die richtige (absteigende) Reihenfolge.\n\n'
       'Ganz oben: Das meistgekaufte Produkt in Deutschland.';
+
+  static var finalDialogText =
+      'Alles fertig! Toll!\n\nUnd jetz schnell zurück zum Start und die Welt retten!';
 }

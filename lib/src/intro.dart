@@ -8,6 +8,10 @@ class Intro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (Provider.of<StateModel>(context).numberOfTasksToDo() == 0) {
+      Future.delayed(
+          const Duration(seconds: 5), () => _showFinalDialog(context));
+    }
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -134,6 +138,17 @@ class Intro extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  _showFinalDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Text(
+          S.finalDialogText,
         ),
       ),
     );

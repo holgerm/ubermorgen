@@ -20,14 +20,22 @@ class _StationThreeState extends State<StationThree> {
   }
 
   var fairDialogShown = false;
+  var correctAtCheckInTime = false;
 
   void _showDialog() {
-    if (!mounted ||
-        !model.station3Checked ||
+    if (!mounted) return;
+
+    if (!model.station3Checked) {
+      correctAtCheckInTime = (model.numberOfErrors == 0);
+    }
+
+    if (!model.station3Checked ||
+        correctAtCheckInTime ||
         fairDialogShown ||
         model.numberOfErrors != 0) {
       return;
     }
+
     // `hasToShowDialog` could be a getter and not a variable.
     showDialog<String>(
       context: context,

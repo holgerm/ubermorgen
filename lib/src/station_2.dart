@@ -111,8 +111,8 @@ class _ResultAreaState extends State<ResultArea> {
             Expanded(
               child: Slider(
                 value: _curSliderValue,
-                max: 20,
-                divisions: 20,
+                max: 10,
+                divisions: 10,
                 label: _curSliderValue.round().toString(),
                 onChanged: model.station2TaskCompleted && !model.station2Checked
                     ? (double value) {
