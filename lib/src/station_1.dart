@@ -206,8 +206,16 @@ class _StationOneState extends State<StationOne> {
                                             "\n\nIhr könnt aber weiter alle Optionen ausprobieren."),
                                         actions: <Widget>[
                                           TextButton(
-                                            onPressed: () =>
-                                                Navigator.pop(context, 'OK'),
+                                            onPressed: () {
+                                              Navigator.pop(context, 'OK');
+                                              model
+                                                  .station1SetInteractionFinished();
+                                              Navigator.pop(context);
+                                              if (model
+                                                  .allStationsFinishedInteractions()) {
+                                                model.showFinalDialog(context);
+                                              }
+                                            },
                                             child: const Text('OK'),
                                           ),
                                         ],

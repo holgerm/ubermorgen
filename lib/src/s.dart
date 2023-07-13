@@ -57,7 +57,4 @@ class S {
   static const station3Task =
       'Verschiebt die unten angezeigten fair gehandelten Produkte in die richtige (absteigende) Reihenfolge.\n\n'
       'Ganz oben: Das meistgekaufte Produkt in Deutschland.';
-
-  static var finalDialogText =
-      'Alles fertig! Toll!\n\nUnd jetz schnell zurück zum Start und die Welt retten!';
 }

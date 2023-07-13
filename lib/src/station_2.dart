@@ -274,7 +274,14 @@ class _FooterState extends State<Footer> {
                                 "Bitte baut die Windräder für die nächste Gruppe wieder ab."),
                             actions: <Widget>[
                               TextButton(
-                                onPressed: () => Navigator.pop(context, 'OK'),
+                                onPressed: () {
+                                  Navigator.pop(context, 'OK');
+                                  model.station2SetInteractionFinished();
+                                  Navigator.pop(context);
+                                  if (model.allStationsFinishedInteractions()) {
+                                    model.showFinalDialog(context);
+                                  }
+                                },
                                 child: const Text('OK'),
                               ),
                             ],

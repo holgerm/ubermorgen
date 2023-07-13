@@ -179,6 +179,11 @@ class _StationThreeState extends State<StationThree> {
           FilledButton(
             onPressed: () {
               Navigator.pop(context, 'OK');
+              model.station3SetInteractionFinished();
+              Navigator.pop(context);
+              if (model.allStationsFinishedInteractions()) {
+                model.showFinalDialog(context);
+              }
             },
             child: const Text('OK'),
           ),
@@ -191,7 +196,7 @@ class _StationThreeState extends State<StationThree> {
     if (!model.station3Checked) return '';
 
     if (model.numberOfErrors > 0) {
-      return 'Du hast ${model.numberOfErrors} Produkte falsch angeordnet.\nDu kannst sie aber weiterhin verschieben, um die richtige Lösung zu sehen.';
+      return 'Du hast ${model.numberOfErrors} Produkte falsch angeordnet.\nBitte verschiebt sie so, dass ihr die richtige Lösung seht.\nGrüne Häkchen zeigen euch das an';
     } else {
       return 'Perfekte Lösung! Genauso stimmt alles.';
     }

@@ -332,4 +332,45 @@ class StateModel extends ChangeNotifier {
     station3Checked = value;
     notifyListeners();
   }
+
+  // FINAL SITUATION:
+  bool s1InteractionFinished = false;
+  bool s2InteractionFinished = false;
+  bool s3InteractionFinished = false;
+
+  void station1SetInteractionFinished() {
+    s1InteractionFinished = true;
+  }
+
+  void station2SetInteractionFinished() {
+    s2InteractionFinished = true;
+  }
+
+  void station3SetInteractionFinished() {
+    s3InteractionFinished = true;
+  }
+
+  bool allStationsFinishedInteractions() {
+    return (s1InteractionFinished &&
+        s2InteractionFinished &&
+        s3InteractionFinished);
+  }
+
+  void showFinalDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Super, ihr habt alle Stationen geschafft!"),
+        content: const Text(
+          'Und jetzt bitte schnell zurück zum Start und die Welt retten!',
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'OK'),
+            child: const Text('Angekommen'),
+          ),
+        ],
+      ),
+    );
+  }
 }
