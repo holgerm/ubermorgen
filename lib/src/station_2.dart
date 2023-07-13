@@ -147,7 +147,7 @@ class CountDown extends StatefulWidget {
 }
 
 class _CountDownState extends State<CountDown> {
-  int timeLeft = 30;
+  int timeLeft = 60;
   bool started = false;
   Timer? currentTimer;
   late ByteData timerData;

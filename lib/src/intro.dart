@@ -90,7 +90,7 @@ class Intro extends StatelessWidget {
                   ),
                   const SizedBox(width: 50),
                   SizedBox(
-                    width: 700,
+                    width: 800,
                     child: Consumer<StateModel>(
                       builder: (context, model, child) {
                         return SizedBox(
