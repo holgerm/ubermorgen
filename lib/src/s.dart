@@ -42,7 +42,7 @@ class S {
 
   static const station2Title = 'Station Erneuerbare Energie';
   static const station2Task =
-      'Eure Aufgabe: Bastelt gemeinsam innerhalb von einer halben Minute so viele Windräder wie möglich, um erneuerbare Energie auszubauen.\n\n'
+      'Eure Aufgabe: Bastelt gemeinsam innerhalb von einer Minute so viele Windräder wie möglich, um erneuerbare Energie auszubauen.\n\n'
       'Wie ein Windrad aussieht, seht ihr im beiliegenden Bauplan.\n\n'
       'Wie viele Windräder schafft ihr?\n\n'
       'Wenn ihr auf „Start“ drückt, läuft die Zeit.';
