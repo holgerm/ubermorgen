@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 class L {
@@ -9,6 +10,7 @@ class L {
       100 - (heightOfTaskDescription + heightOfFooter);
 
   static const fontSize = 20.0;
+  static const fontSizeSubTitle = 28.0;
   static const fontSizeHeader = 35.0;
 
   static const s1color = Color.fromARGB(255, 247, 148, 29);
@@ -38,4 +40,11 @@ class L {
 
     return MaterialColor(color.value, shades);
   }
+
+  // AUDIO:
+  // static final AudioPlayer playerWin = AudioPlayer();
+
+  // static Future<void> playWin() async {
+  //   await playerWin.play(AssetSource("audio/win.mp3"));
+  // }
 }

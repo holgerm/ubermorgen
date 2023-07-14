@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:ubermorgen/src/state_model.dart';
-import 'ubermorgen.dart' show L, S;
+import 'ubermorgen.dart' show L, S, StateModel;
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/services.dart';
 
@@ -24,41 +23,64 @@ class _StationTwoState extends State<StationTwo> {
           title: const Text(S.station2Title),
         ),
         body: Container(
-          padding: const EdgeInsets.all(25.0),
-          alignment: Alignment.center,
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(
-                  flex: 35,
-                  child: Container(
-                    padding: const EdgeInsets.all(25.0),
-                    child: const Text(
-                      S.station2Task,
-                      textAlign: TextAlign.start,
-                      style: TextStyle(fontSize: L.fontSize),
-                    ),
+          padding: const EdgeInsets.all(15.0),
+          alignment: Alignment.centerLeft,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Flexible(
+                flex: 20,
+                child: Container(
+                  padding: const EdgeInsets.all(15.0),
+                  child: const Text(
+                    S.station2Task,
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontSize: L.fontSizeSubTitle),
                   ),
                 ),
-                Flexible(
-                  flex: 50,
-                  child: Container(
-                    padding: const EdgeInsets.all(25.0),
-                    child: const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        CountDown(),
-                        ResultArea(),
-                      ],
-                    ),
+              ),
+              Flexible(
+                flex: 45,
+                child: Container(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        height: 460,
+                        child: Image.asset('assets/images/windraeder.jpg'),
+                      ),
+                      const SizedBox(
+                        width: 100,
+                      ),
+                      const Expanded(
+                        child: Text(
+                          S.station2TaskDetails,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(fontSize: L.fontSize),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                const Footer(),
-              ],
-            ),
+              ),
+              Flexible(
+                flex: 30,
+                child: Container(
+                  padding: const EdgeInsets.all(15.0),
+                  child: const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      CountDown(),
+                      ResultArea(),
+                    ],
+                  ),
+                ),
+              ),
+              const Footer(),
+            ],
           ),
         ),
       ),
@@ -72,7 +94,7 @@ class Station2Task1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(25.0),
+      padding: const EdgeInsets.all(15.0),
       child: const Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -251,7 +273,7 @@ class _FooterState extends State<Footer> {
       child: Align(
         alignment: Alignment.centerLeft,
         child: Container(
-          padding: const EdgeInsets.all(25.0),
+          padding: const EdgeInsets.all(15.0),
           child: Consumer<StateModel>(
             builder: (BuildContext context, model, Widget? child) {
               return FilledButton.icon(
@@ -279,6 +301,7 @@ class _FooterState extends State<Footer> {
                                   model.station2SetInteractionFinished();
                                   Navigator.pop(context);
                                   if (model.allStationsFinishedInteractions()) {
+                                    //L.playWin();
                                     model.showFinalDialog(context);
                                   }
                                 },

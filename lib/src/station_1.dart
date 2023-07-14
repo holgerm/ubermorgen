@@ -213,6 +213,7 @@ class _StationOneState extends State<StationOne> {
                                               Navigator.pop(context);
                                               if (model
                                                   .allStationsFinishedInteractions()) {
+                                                //L.playWin();
                                                 model.showFinalDialog(context);
                                               }
                                             },

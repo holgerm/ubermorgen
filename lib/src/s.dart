@@ -42,7 +42,8 @@ class S {
 
   static const station2Title = 'Station Erneuerbare Energie';
   static const station2Task =
-      'Eure Aufgabe: Bastelt gemeinsam innerhalb von einer Minute so viele Windräder wie möglich, um erneuerbare Energie auszubauen.\n\n'
+      'Bastelt gemeinsam innerhalb von einer Minute so viele Windräder wie möglich, um erneuerbare Energie auszubauen.';
+  static const station2TaskDetails =
       'Wie ein Windrad aussieht, seht ihr im beiliegenden Bauplan.\n\n'
       'Wie viele Windräder schafft ihr?\n\n'
       'Wenn ihr auf „Start“ drückt, läuft die Zeit.';
@@ -55,6 +56,9 @@ class S {
 
   static const station3Title = 'Station Fairer Handel';
   static const station3Task =
+      'Wir alle gehen tagtäglich zum Einkaufen - aber wie machen wir das nachhaltig?';
+  static const station3TaskDetails =
+      'Zum Beispiel indem in unserem Einkaufskorb Fairtrade-Produkte landen.\n\n'
       'Verschiebt die unten angezeigten fair gehandelten Produkte in die richtige (absteigende) Reihenfolge.\n\n'
       'Ganz oben: Das meistgekaufte Produkt in Deutschland.';
 }

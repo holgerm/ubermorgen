@@ -73,11 +73,22 @@ class _StationThreeState extends State<StationThree> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Flexible(
-              flex: L.heightOfTaskDescription,
+              flex: 20,
               child: Container(
-                padding: const EdgeInsets.all(25.0),
+                padding: const EdgeInsets.all(15.0),
                 child: const Text(
                   S.station3Task,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: L.fontSizeSubTitle),
+                ),
+              ),
+            ),
+            Flexible(
+              flex: 30,
+              child: Container(
+                padding: const EdgeInsets.all(15.0),
+                child: const Text(
+                  S.station3TaskDetails,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: L.fontSize),
                 ),
@@ -104,7 +115,7 @@ class _StationThreeState extends State<StationThree> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Container(
-                  padding: const EdgeInsets.all(25.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Consumer<StateModel>(
                     builder: (BuildContext context, model, Widget? child) {
                       return FilledButton.icon(
@@ -182,6 +193,7 @@ class _StationThreeState extends State<StationThree> {
               model.station3SetInteractionFinished();
               Navigator.pop(context);
               if (model.allStationsFinishedInteractions()) {
+                //L.playWin();
                 model.showFinalDialog(context);
               }
             },
