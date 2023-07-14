@@ -94,9 +94,9 @@ class _StationThreeState extends State<StationThree> {
                 ),
               ),
             ),
-            Flexible(
-              flex: (L.heightOfContent * 0.8).round(),
-              child: const ProductListView(),
+            const Flexible(
+              flex: 100,
+              child: ProductListView(),
             ),
             Flexible(
               flex: (L.heightOfContent * 0.2).round(),
