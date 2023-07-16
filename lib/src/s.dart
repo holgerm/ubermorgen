@@ -45,8 +45,7 @@ class S {
       'Bastelt gemeinsam innerhalb von einer Minute so viele Windräder wie möglich, um erneuerbare Energie auszubauen.';
   static const station2TaskDetails =
       'Wie ein Windrad aussieht, seht ihr im beiliegenden Bauplan.\n\n'
-      'Wie viele Windräder schafft ihr?\n\n'
-      'Wenn ihr auf „Start“ drückt, läuft die Zeit.';
+      'Wie viele Windräder schafft ihr?';
   static const station2TimeOutTitle =
       'Fertig! Wieviele Windräder hast du geschafft?';
   static const station2TimeOutSubTitle =
@@ -59,6 +58,7 @@ class S {
       'Wir alle gehen tagtäglich zum Einkaufen - aber wie machen wir das nachhaltig?';
   static const station3TaskDetails =
       'Zum Beispiel indem in unserem Einkaufskorb Fairtrade-Produkte landen.\n\n'
-      'Verschiebt die unten angezeigten fair gehandelten Produkte in die richtige (absteigende) Reihenfolge.\n\n'
+      'Hier zeigen wir euch die 5 in Deutschland am häufigsten gekauften Fair-Trade-Produkte an.'
+      'Eure Aufgabe: Verschiebt die angezeigten Produkte in die richtige (absteigende) Reihenfolge.\n\n'
       'Ganz oben: Das meistgekaufte Produkt in Deutschland.';
 }

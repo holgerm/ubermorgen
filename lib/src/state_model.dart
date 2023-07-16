@@ -139,14 +139,14 @@ class StateModel extends ChangeNotifier {
             ),
             SizedBox(height: 8),
             Text(
-              'Wie kann ein nachhaltiger Ort im Übermorgen aussehen? In diesem Spiel erfahrt und erlebt ihr an drei Stationen, was wir tun und wie wir etwas verändern können.',
+              'Wie kann ein nachhaltiger Ort im Übermorgen aussehen? In diesem Spiel erfahrt und erlebt ihr an drei Stationen, was wir tun können und wie sich das auswirkt.',
               textAlign: TextAlign.start,
               softWrap: true,
               style: TextStyle(fontSize: L.fontSize),
             ),
             SizedBox(height: 8),
             Text(
-              "Bitte bearbeitet die Stationen zügig, weil wir nicht zu lange Zeit haben, das Schmelzen der Erde aufzuhalten.",
+              "Bitte bearbeitet die Stationen zügig, weil wir nicht zu lange Zeit haben, das Schmelzen der Erde aufzuhalten. Die Reihenfolge ist beliebig.",
               textAlign: TextAlign.start,
               softWrap: true,
               style: TextStyle(fontSize: L.fontSize),

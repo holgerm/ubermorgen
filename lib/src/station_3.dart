@@ -70,7 +70,8 @@ class _StationThreeState extends State<StationThree> {
           title: const Text(S.station3Title),
         ),
         body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Flexible(
               flex: 20,
@@ -78,18 +79,18 @@ class _StationThreeState extends State<StationThree> {
                 padding: const EdgeInsets.all(15.0),
                 child: const Text(
                   S.station3Task,
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.start,
                   style: TextStyle(fontSize: L.fontSizeSubTitle),
                 ),
               ),
             ),
             Flexible(
-              flex: 30,
+              flex: 45,
               child: Container(
                 padding: const EdgeInsets.all(15.0),
                 child: const Text(
                   S.station3TaskDetails,
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.start,
                   style: TextStyle(fontSize: L.fontSize),
                 ),
               ),
@@ -99,15 +100,19 @@ class _StationThreeState extends State<StationThree> {
               child: ProductListView(),
             ),
             Flexible(
-              flex: (L.heightOfContent * 0.2).round(),
-              child: Consumer<StateModel>(
-                builder: (BuildContext context, model, Widget? child) {
-                  return Text(
-                    _getFeedbackText(model),
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: L.fontSize),
-                  );
-                },
+              flex: 40,
+              child: Container(
+                padding: const EdgeInsets.all(15.0),
+                child: Consumer<StateModel>(
+                  builder: (BuildContext context, model, Widget? child) {
+                    return Text(
+                      _getFeedbackText(model),
+                      textAlign: TextAlign.start,
+                      softWrap: true,
+                      style: const TextStyle(fontSize: L.fontSize),
+                    );
+                  },
+                ),
               ),
             ),
             Flexible(
@@ -208,7 +213,7 @@ class _StationThreeState extends State<StationThree> {
     if (!model.station3Checked) return '';
 
     if (model.numberOfErrors > 0) {
-      return 'Du hast ${model.numberOfErrors} Produkte falsch angeordnet.\nBitte verschiebt sie so, dass ihr die richtige Lösung seht.\nGrüne Häkchen zeigen euch das an';
+      return 'Du hast ${model.numberOfErrors} Produkte falsch angeordnet. Bitte verschiebt sie so, dass ihr die richtige Lösung seht. Grüne Häkchen zeigen euch das an.';
     } else {
       return 'Perfekte Lösung! Genauso stimmt alles.';
     }

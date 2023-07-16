@@ -153,51 +153,54 @@ class StationField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(
-      style: ButtonStyle(
-        padding:
-            MaterialStateProperty.resolveWith<EdgeInsetsGeometry>((states) {
-          return const EdgeInsets.all(20.0);
-        }),
-        backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
-          return L.getMaterialColor(done ? colCompleted : col);
-        }),
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(22.0),
+    return SizedBox(
+      width: 260,
+      child: OutlinedButton(
+        style: ButtonStyle(
+          padding:
+              MaterialStateProperty.resolveWith<EdgeInsetsGeometry>((states) {
+            return const EdgeInsets.all(20.0);
+          }),
+          backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+            return L.getMaterialColor(done ? colCompleted : col);
+          }),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(22.0),
+            ),
           ),
         ),
-      ),
-      onPressed: () {
-        switch (title) {
-          case S.titleStation1:
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const StationOne()));
-            break;
-          case S.titleStation2:
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const StationTwo()));
-            break;
-          case S.titleStation3:
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const StationThree()));
-        }
-      },
-      child: Column(
-        children: [
-          Image(
-            image: done
-                ? AssetImage('assets/images/${iconname}_done.png')
-                : AssetImage('assets/images/$iconname.png'),
-            width: 150,
-            //color: null,
-          ),
-          Text(
-            title,
-            style: const TextStyle(fontSize: L.fontSize),
-            textAlign: TextAlign.center,
-          ),
-        ],
+        onPressed: () {
+          switch (title) {
+            case S.titleStation1:
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const StationOne()));
+              break;
+            case S.titleStation2:
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const StationTwo()));
+              break;
+            case S.titleStation3:
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const StationThree()));
+          }
+        },
+        child: Column(
+          children: [
+            Image(
+              image: done
+                  ? AssetImage('assets/images/${iconname}_done.png')
+                  : AssetImage('assets/images/$iconname.png'),
+              width: 150,
+              //color: null,
+            ),
+            Text(
+              title,
+              style: const TextStyle(fontSize: L.fontSize),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }
